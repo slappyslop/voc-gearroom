@@ -13,7 +13,7 @@ import java.util.List;
  *         return the rest of the data from the other list until it too runs out
  *      3) Cartesian: the data from the two lists combined (cartesian product style) by multiplying.
  *         If there are four items in listone, named l11, l12, l13, l14 and three items
- *         in listtwo named:l21, l22, l23, then these elements would be return:
+ *         in listtwo named l21, l22, l23, then these elements would be returned:
  *                       l11 * l21, l11 * l22, l11 * l23,
  *                       l12 * l21, l12 * l22, l12 * l23,
  *                       l13 * l21, l13 * l22, l13 * l23,
