@@ -22,11 +22,11 @@ import java.util.List;
  *      iterator().
  */
 public class TwoLists {
+    public static final int ONE_THEN_TWO = 0;
+    public static final int ALTERNATING = 1;
+    public static final int CARTESIAN = 2;
     private List<Integer> listone;
     private List<Integer> listtwo;
-    public static final int OneThenTwo = 0;
-    public static final int Alternating = 1;
-    public static final int Cartesian = 2;
     private int whichIterator = -1;
 
     public TwoLists() {
@@ -34,12 +34,16 @@ public class TwoLists {
         listtwo = new ArrayList<Integer>();
     }
 
-    // EFFECTS: Choose which iterator should be returned when iterator() is called. If no iterator
-    //  has been chosen, then return a random iterator.
+    // MODIFIES: this
+    // EFFECTS: Sets the iterator that will be returned when iterator() is called. If no iterator
+    // has been chosen, then return a random iterator.
     public void chooseIterator(int whichIterator) {
         this.whichIterator = whichIterator;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds value to list one if which is 1, and to list two if which is 2;
+    // throws a RuntimeException if which is neither 1 nor 2
     public void add(int which, Integer value) {
         switch (which) {
             case 1:
@@ -49,7 +53,7 @@ public class TwoLists {
                 listtwo.add(value);
                 break;
             default:
-                throw new RuntimeException("Invalid list index in TwoLists.add");
+                throw new RuntimeException("TwoLists.add with illegal which argument " + which);
         }
     }
 }
