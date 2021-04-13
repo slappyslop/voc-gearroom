@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TwoListTest {
     private TwoLists twoLists;
@@ -177,6 +176,7 @@ public class TwoListTest {
 
     private void verify(List<Integer> expected, Iterator<Integer> it) {
         for (Integer next : expected) {
+            assertTrue(it.hasNext());
             assertEquals(next, it.next());
         }
         assertFalse(it.hasNext());
