@@ -3,10 +3,7 @@ package ca.ubc.cs.cpsc210.moreiterators;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -180,5 +177,12 @@ public class TwoListTest {
             assertEquals(next, it.next());
         }
         assertFalse(it.hasNext());
+
+        try {
+            it.next();
+            fail("NoSuchElementException expected");
+        } catch (NoSuchElementException e) {
+            // expected
+        }
     }
 }
