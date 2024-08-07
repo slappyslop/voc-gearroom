@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "src/main",
+        "src/test"
+    ],
+    "java.project.referencedLibraries": [
+    	"lib/**/*.jar"
+    ],
+    "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
+    "java.checkstyle.version": "10.2"
+}
