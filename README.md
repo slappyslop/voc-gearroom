@@ -10,11 +10,13 @@ Ideally trip leaders of the VOC would use this to help them plan a trip, and may
 This project is of interest to me because I'm an enthusiastic member of the club, and have suffered from both sudden gear shortages and picking suboptimal car spots and the delays that come with them.
 
 
-## A subtitle
+## User Stories
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+- As a trip leader I would like to add a trip to the list of trips
+- As a trip leader, I would like to add someone to the list of people going on a trip
+- As a member, I would like to add myself to the list of people interested in the trip
+- As a member, I would like to add myself to the list of people committed to the trip
+- As a quartermaster, I would like to add gear to the gear room (list of gear)
+- As a user I would like to view everybody interested, committed, and going on the trip
+- As a viewer I would like to see a list of all trips posted
 
-An example of text with **bold** and *italic* fonts.  
