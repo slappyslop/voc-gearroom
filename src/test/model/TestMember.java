@@ -1,0 +1,71 @@
+package model;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class TestMember {
+    Member m;
+    Trip t1;
+    Trip t2;
+    GearRoom gr;
+    
+    @BeforeEach
+    void runBefore() {
+        m = new Member("Test");
+        gr = new GearRoom();
+        t1 = new Trip(gr);
+        t2 = new Trip(gr);
+
+    }
+
+    @Test
+    void testConstructor(){
+        assertTrue(m.getCommittedTrips().isEmpty());
+        assertTrue(m.getGoingTrips().isEmpty());
+        assertTrue(m.getInterestedTrips().isEmpty());
+        assertTrue(m.getMyGear().isEmpty());
+    }
+    @Test
+    void testRegisterGoing() {
+        m.registerGoing(t1);
+        assertEquals(1, m.getGoingTrips().size());
+        assertEquals(t1, m.getGoingTrips().get(0));
+        m.registerGoing(t2);
+        assertEquals(2, m.getGoingTrips().size());
+        assertEquals(t1, m.getGoingTrips().get(0));
+        assertEquals(t2, m.getGoingTrips().get(1));
+    }
+
+    @Test
+    void testRegisterCommitted() {
+        m.registerCommitted(t1);
+        assertEquals(1, m.getCommittedTrips().size());
+        assertEquals(t1, m.getCommittedTrips().get(0));
+        assertEquals(1, t1.getCommitted().size());
+        assertEquals(m, t1.getCommitted().get(0));
+        m.registerCommitted(t2);
+        assertEquals(2, m.getCommittedTrips().size());
+        assertEquals(t1, m.getCommittedTrips().get(0));
+        assertEquals(t2, m.getCommittedTrips().get(1));
+
+    }
+
+    @Test
+    void testRegisterInterested() {
+        m.registerInterested(t1);
+        assertEquals(1, m.getInterestedTrips().size());
+        assertEquals(t1, m.getInterestedTrips().get(0));
+        assertEquals(1, t1.getInterested().size());
+        assertEquals(m, t1.getInterested().get(0));
+        m.registerInterested(t2);
+        assertEquals(2, m.getInterestedTrips().size());
+        assertEquals(t1, m.getInterestedTrips().get(0));
+        assertEquals(t2, m.getInterestedTrips().get(1));
+
+    }
+
+}

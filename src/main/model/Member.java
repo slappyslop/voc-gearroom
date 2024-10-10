@@ -34,6 +34,10 @@ public class Member {
         t.addToInterested(this);
     }
 
+    public void registerGoing(Trip t){
+        going.add(t);
+    }
+
     public String getName() {
         return name;
     }
