@@ -4,55 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trip {
-    
+
     private GearRoom gr;
     private List<Member> going;
     private List<Member> committed;
     private List<Member> interested;
     private int startDate;
     private int endDate;
+    private List<String> requiredGear;
 
-    public Trip(GearRoom gr){ 
+    public Trip(GearRoom gr, List<String> requiredGear) {
         going = new ArrayList<Member>();
         committed = new ArrayList<Member>();
         interested = new ArrayList<Member>();
         this.gr = gr;
-
+        this.requiredGear = requiredGear;
 
     }
-    //REQUIRES: Must be invoked by trip leader only
-    //MODIFIES: this
-    //EFFECTS: Adds the member to the going list of the trip, 
-    //          adds trip to going of member
+
+    // REQUIRES: Must be invoked by trip leader only
+    // MODIFIES: this
+    // EFFECTS: Adds the member to the going list of the trip,
+    // adds trip to going of member
     public void addToGoing(Member m) {
         going.add(m);
         m.registerGoing(this);
 
     }
-    //MODIFIES: this
-    //EFFECTS: Adds the member to the committed list of the trip, 
-    //         returns true if there is enough gear in the club room
-    //         false if there is not.
+
+    // MODIFIES: this
+    // EFFECTS: Adds the member to the committed list of the trip,
+    // returns true if there is enough gear in the club room
+    // false if there is not.
     public boolean addToCommitted(Member m) {
         committed.add(m);
-        return checkEnoughGear();
+        return checkEnoughGear(m);
     }
 
-    //MODIFIES: this
-    //EFFECTS: Adds the member to the committed list of the trip
-    public void addToInterested(Member m){
+    // MODIFIES: this
+    // EFFECTS: Adds the member to the committed list of the trip
+    public void addToInterested(Member m) {
         interested.add(m);
     }
 
-    //EFFECTS: Returns list of going members on trip
-    public List<Member> getGoing() {
-        return going;
-    }
-    //MODIFIES: this, gr
-    //EFFECTS: Checks if there is enough unreserved gear for one additional person in the gear room
-    //         Marks gear as reserved and returns true if there is, returns false if no gear
-    public boolean checkEnoughGear() {
-        for(Gear g : gr.getGearRoom()) {
+    // MODIFIES: this, gr
+    // EFFECTS: Checks if there is enough unreserved gear for member in the gear
+    // room
+    // Marks gear as reserved and returns true if there is, returns false if no gear
+    public boolean checkEnoughGear(Member m) {
+        // TODO
+        for (Gear g : gr.getGearRoom()) {
             if (!g.isReserved(startDate, endDate)) {
                 g.reserve(startDate, endDate);
                 return true;
@@ -61,12 +62,20 @@ public class Trip {
         return false;
     }
 
-    //EFFECTS: Returns list of committed members
+    //EFFECTS: Subtracts trip.requiredGear from member.myGear and returns what gear the member must rent
+    public List<String> getMemberRequiredGear(Member m) {
+        return null;
+    }
+
+    // EFFECTS: Returns list of going members on trip
+    public List<Member> getGoing() {
+        return going;
+    }
+
     public List<Member> getCommitted() {
         return committed;
     }
 
-    //EFFECTS: Returns list of interested members
     public List<Member> getInterested() {
         return interested;
 
@@ -75,7 +84,7 @@ public class Trip {
     public void setStartDate(int start) {
         this.startDate = start;
     }
-    
+
     public void setEndDate(int end) {
         this.endDate = end;
     }
@@ -86,6 +95,10 @@ public class Trip {
 
     public int getEndDate() {
         return endDate;
+    }
+
+    public List<String> getRequiredGear() {
+        return requiredGear;
     }
 
 }
