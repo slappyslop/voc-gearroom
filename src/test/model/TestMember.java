@@ -3,6 +3,8 @@ package model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,13 +14,15 @@ public class TestMember {
     Trip t1;
     Trip t2;
     GearRoom gr;
+    List<String> gl;
     
     @BeforeEach
     void runBefore() {
         m = new Member("Test");
         gr = new GearRoom();
-        t1 = new Trip(gr);
-        t2 = new Trip(gr);
+        gl = new ArrayList<>();
+        t1 = new Trip(gr, gl);
+        t2 = new Trip(gr, gl);
 
     }
 
@@ -67,5 +71,14 @@ public class TestMember {
         assertEquals(t2, m.getInterestedTrips().get(1));
 
     }
-
+    @Test
+    void testAddToMyGear() {
+        m.addToMyGear("skis");
+        assertEquals(1, m.getMyGear().size());
+        assertEquals("skis", m.getMyGear().get(0));
+        m.addToMyGear("climbing shoes");
+        assertEquals(2, m.getMyGear().size());
+        assertEquals("skis", m.getMyGear().get(0));
+        assertEquals("climbing shoes", m.getMyGear().get(1));
+    }   
 }

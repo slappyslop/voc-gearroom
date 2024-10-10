@@ -7,7 +7,7 @@ public class Member {
     private List<Trip> committed;
     private List<Trip> interested;
     private List<Trip> going;
-    private List<Gear> myGear;
+    private List<String> myGear;
     private String name;
 
 
@@ -16,7 +16,7 @@ public class Member {
         committed = new ArrayList<Trip>();
         interested = new ArrayList<Trip>();
         going = new ArrayList<Trip>();
-        myGear = new ArrayList<Gear>();
+        myGear = new ArrayList<String>();
 
     }
 
@@ -32,6 +32,11 @@ public class Member {
     public void registerInterested(Trip t) {
         interested.add(t);
         t.addToInterested(this);
+    }
+    //MODIFIES: this
+    //EFFECTS: Adds a piece of gear to your owned list, this means you dont want to rent it.
+    public void addToMyGear(String s) {
+        myGear.add(s);
     }
 
     public void registerGoing(Trip t){
@@ -54,7 +59,7 @@ public class Member {
         return going;
     }
 
-    public List<Gear> getMyGear(){
+    public List<String> getMyGear(){
         return myGear;
     }
 
