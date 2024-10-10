@@ -12,13 +12,15 @@ public class TestTripAgenda {
     TripAgenda testAgenda;
     Trip trip1;
     Trip trip2;
+    GearRoom gr;
 
 
     @BeforeEach
     void runBefore(){
+        gr = new GearRoom();
         testAgenda = new TripAgenda();
-        trip1 = new Trip();
-        trip2 = new Trip();
+        trip1 = new Trip(gr);
+        trip2 = new Trip(gr);
     }
 
     @Test

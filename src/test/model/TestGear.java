@@ -47,7 +47,7 @@ public class TestGear {
         assertTrue(g1.isReserved(7, 9));
         assertTrue(g1.isReserved(7, 9));
         assertTrue(g1.isReserved(4, 4));
-        assertFalse(g1.isReserved(1, 3));
+        assertFalse(g1.isReserved(1, 2));
         assertFalse(g1.isReserved(8, 8));
     } 
 

@@ -24,17 +24,18 @@ public class TestTrip {
 
     @BeforeEach
     void runBefore(){
-        testTrip = new Trip();
+        testgr = new GearRoom();
+        testgr2 = new GearRoom();
+        testTrip = new Trip(testgr);
         m1 = new Member("A");
         m2 = new Member("B");
-        g1 = new Gear();
-        g2 = new Gear();
+        g1 = new Gear("AA");
+        g2 = new Gear("BB");
 
         going = testTrip.getGoing();
         interested = testTrip.getInterested();
         committed = testTrip.getCommitted();
-        testgr = new GearRoom();
-        testgr2 = new GearRoom();
+
 
 
     }
@@ -94,12 +95,12 @@ public class TestTrip {
 
     @Test
     void testCheckEnoughGear() {
-        assertFalse(testTrip.checkEnoughGear(testgr));
+        assertFalse(testTrip.checkEnoughGear());
         testgr.addGear(g1);
         testgr.addGear(g2);
-        assertTrue(testTrip.checkEnoughGear(testgr));
-        assertTrue(testTrip.checkEnoughGear(testgr));
-        assertFalse(testTrip.checkEnoughGear(testgr));
+        assertTrue(testTrip.checkEnoughGear());
+        assertTrue(testTrip.checkEnoughGear());
+        assertFalse(testTrip.checkEnoughGear());
     }
 
 }
