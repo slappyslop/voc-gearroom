@@ -11,14 +11,14 @@ public class Trip {
     private List<Member> interested;
     private int startDate;
     private int endDate;
-    private List<String> requiredGear;
+    private List<String> gearList;
 
-    public Trip(GearRoom gr, List<String> requiredGear) {
+    public Trip(GearRoom gr, List<String> gearList) {
         going = new ArrayList<Member>();
         committed = new ArrayList<Member>();
         interested = new ArrayList<Member>();
         this.gr = gr;
-        this.requiredGear = requiredGear;
+        this.gearList = gearList;
 
     }
 
@@ -52,19 +52,40 @@ public class Trip {
     // room
     // Marks gear as reserved and returns true if there is, returns false if no gear
     public boolean checkEnoughGear(Member m) {
-        // TODO
+        List<String> requiredGear = getMemberRequiredGear(m);
         for (Gear g : gr.getGearRoom()) {
             if (!g.isReserved(startDate, endDate)) {
-                g.reserve(startDate, endDate);
-                return true;
-            }
+                for (String s : requiredGear) {
+                    if (g.getName().equals(s)) {
+                        g.reserve(startDate, endDate);
+                        requiredGear.remove(s);
+                        break;
+                    }
+                }
+            } else continue;
+
         }
-        return false;
+        return requiredGear.isEmpty();
     }
 
-    //EFFECTS: Subtracts trip.requiredGear from member.myGear and returns what gear the member must rent
+    // EFFECTS: Subtracts trip.requiredGear from member.myGear and returns what gear
+    // the member must rent
     public List<String> getMemberRequiredGear(Member m) {
-        return null;
+        List<String> requiredGear = new ArrayList<String>();
+        for (String s : gearList) {
+            requiredGear.add(s);
+        }
+        for (String ms : m.getMyGear()) {
+            for (String s : requiredGear) {
+                if (ms.equals(s)) {
+                    requiredGear.remove(s);
+                    break;
+                }
+
+            }
+        }
+        return requiredGear;
+
     }
 
     // EFFECTS: Returns list of going members on trip
@@ -97,8 +118,8 @@ public class Trip {
         return endDate;
     }
 
-    public List<String> getRequiredGear() {
-        return requiredGear;
+    public List<String> getGearList() {
+        return gearList;
     }
 
 }
