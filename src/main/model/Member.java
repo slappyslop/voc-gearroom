@@ -3,14 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents a club member having name, names of gear they already own, and a log of trips they have interacted with
 public class Member {
-    private List<Trip> committed;
-    private List<Trip> interested;
-    private List<Trip> going;
-    private List<String> myGear;
-    private String name;
+    private List<Trip> committed; //trips the member has committed to going on
+    private List<Trip> interested; //trips the member has expressed interest to going on
+    private List<Trip> going; //trips the member has gone/ is going on
+    private List<String> myGear; //a list of names of gear the member owns
+    private String name; // name of the member
 
-
+    //Requires: name is not empty
     public Member(String name){
         this.name = name;
         committed = new ArrayList<Trip>();

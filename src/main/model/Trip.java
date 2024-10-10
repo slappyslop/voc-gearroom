@@ -3,16 +3,19 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents a club trip, having access to a pool of gear, members who are going, committed, and interested, a start and end date,
+// and a list of names of required gear
 public class Trip {
 
-    private GearRoom gr;
-    private List<Member> going;
-    private List<Member> committed;
-    private List<Member> interested;
-    private int startDate;
-    private int endDate;
-    private List<String> gearList;
+    private GearRoom gr; //Accessible pool of club gear
+    private List<Member> going; //list of members going on trip
+    private List<Member> committed; //list of members committed to trip
+    private List<Member> interested; //list of members interested in trip
+    private int startDate; //start date of trip
+    private int endDate; // end date of trip
+    private List<String> gearList; //list of gear required for trip per person
 
+    //REQUIRES: gearList must not contain duplicates
     public Trip(GearRoom gr, List<String> gearList) {
         going = new ArrayList<Member>();
         committed = new ArrayList<Member>();
@@ -22,7 +25,7 @@ public class Trip {
 
     }
 
-    // REQUIRES: Must be invoked by trip leader only
+    // REQUIRES: Must be invoked by trip leader only, committed.contains(m)
     // MODIFIES: this
     // EFFECTS: Adds the member to the going list of the trip,
     // adds trip to going of member
@@ -116,10 +119,6 @@ public class Trip {
 
     public int getEndDate() {
         return endDate;
-    }
-
-    public List<String> getGearList() {
-        return gearList;
     }
 
 }

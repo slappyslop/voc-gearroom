@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Represents the trip agenda, a list of club trips
 public class TripAgenda {
 
     private List<Trip> agenda;
@@ -18,7 +18,7 @@ public class TripAgenda {
     }
 
     public List<Trip> getTrips(){
-    return agenda;
+        return agenda;
     }
     
 

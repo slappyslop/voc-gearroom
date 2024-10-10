@@ -2,6 +2,7 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
+//Represents the club's shared pool of gear available to rent
 public class GearRoom {
     private List<Gear> gearRoom;
 
