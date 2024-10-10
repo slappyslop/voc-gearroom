@@ -1,41 +1,57 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
+    private List<Trip> committed;
+    private List<Trip> interested;
+    private List<Trip> going;
+    private List<Gear> myGear;
+    private String name;
+
 
     public Member(String name){
+        this.name = name;
+        committed = new ArrayList<Trip>();
+        interested = new ArrayList<Trip>();
+        going = new ArrayList<Trip>();
+        myGear = new ArrayList<Gear>();
 
     }
 
     //MODIFIES: this, t
     //EFFECTS: Adds member to committed list of trip, latest member last, also adds trip to committed list of member
     public void registerCommitted(Trip t) {
-        // TODO
+        committed.add(t);
         t.addToCommitted(this);
     }
 
     //MODIFIES: this, t
     //EFFECTS: Adds member to interested list of trip, latest member last, also adds trip to interested list of member
     public void registerInterested(Trip t) {
-        //TODO
+        interested.add(t);
         t.addToInterested(this);
     }
 
     public String getName() {
-        return "";
+        return name;
     }
 
     public List<Trip> getCommittedTrips() {
-        return null;
+        return committed;
     }
 
     public List<Trip> getInterestedTrips(){
-        return null;
+        return interested;
     }
 
     public List<Trip> getGoingTrips(){
-        return null;
+        return going;
+    }
+
+    public List<Gear> getMyGear(){
+        return myGear;
     }
 
 
