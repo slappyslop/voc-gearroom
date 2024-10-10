@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,21 +17,26 @@ public class TestTrip {
     Member m2;
     Gear g1;
     Gear g2;
+    Gear g3;
+    Gear g4;
+    Gear g5;
     List<Member> interested;
     List<Member> committed;
     List<Member> going;
     GearRoom testgr;
     GearRoom testgr2;
+    List<String> gl;
 
     @BeforeEach
     void runBefore(){
         testgr = new GearRoom();
         testgr2 = new GearRoom();
-        testTrip = new Trip(testgr);
+        gl = new ArrayList<String>();
+        testTrip = new Trip(testgr, gl);
         m1 = new Member("A");
         m2 = new Member("B");
-        g1 = new Gear("AA");
-        g2 = new Gear("BB");
+        g1 = new Gear("skis");
+        g2 = new Gear("boots");
 
         going = testTrip.getGoing();
         interested = testTrip.getInterested();
@@ -47,7 +53,7 @@ public class TestTrip {
         assertTrue(interested.isEmpty());
     }
 
-    @Test //TODO
+    @Test 
     void testAddToGoing(){
         testTrip.addToGoing(m1);
         assertEquals(1, going.size());
@@ -55,7 +61,7 @@ public class TestTrip {
         assertEquals(1, m1.getGoingTrips().size());
         assertEquals(testTrip, m1.getGoingTrips().get(0));
     }
-    @Test //TODO
+    @Test 
     void testAddMultipleGoing() {
         testTrip.addToGoing(m1);
         testTrip.addToGoing(m2);
@@ -96,13 +102,102 @@ public class TestTrip {
     }
 
     @Test
-    void testCheckEnoughGear() {
-        assertFalse(testTrip.checkEnoughGear());
-        testgr.addGear(g1);
-        testgr.addGear(g2);
-        assertTrue(testTrip.checkEnoughGear());
-        assertTrue(testTrip.checkEnoughGear());
-        assertFalse(testTrip.checkEnoughGear());
+    void testGetMemberRequiredGearAll() {
+      gl.add("skis");
+      gl.add("boots");
+      gl.add("jacket");
+      List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
+      assertEquals(3, requiredGear.size());
+      assertEquals("skis", requiredGear.get(0));
+      assertEquals("boots", requiredGear.get(1));
+      assertEquals("jacket", requiredGear.get(2));
+
     }
 
+    @Test
+    void testGetMemberRequiredGearSome() {
+      gl.add("skis");
+      gl.add("boots");
+      gl.add("jacket");
+      m1.addToMyGear("skis");
+      m1.addToMyGear("boots");
+      m1.addToMyGear("climbing shoes");
+      List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
+      assertEquals(1, requiredGear.size());
+      assertEquals("jacket", requiredGear.get(0));
+    }
+
+    @Test
+    void testGetMemberRequiredGearNone() {
+      gl.add("skis");
+      gl.add("boots");
+      gl.add("jacket");
+      m1.addToMyGear("skis");
+      m1.addToMyGear("boots");
+      m1.addToMyGear("climbing shoes");
+      m1.addToMyGear("jacket");
+      List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
+      assertTrue(requiredGear.isEmpty());
+      
+    }
+
+
+    @Test
+    void testCheckEnoughGear() {
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        g3 = new Gear("jacket");
+        g4 = new Gear("climbing shoes");
+        testgr.addGear(g1);
+        testgr.addGear(g2);
+        testgr.addGear(g3);
+        testgr.addGear(g4);
+
+        assertTrue(testTrip.checkEnoughGear(m1));
+        assertFalse(testTrip.checkEnoughGear(m2));
+        
+    }
+    @Test
+    void testCheckEnoughGearAllAndNone() {
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        g3 = new Gear("jacket");
+        g4 = new Gear("climbing shoes");
+        testgr.addGear(g1);
+        testgr.addGear(g2);
+        testgr.addGear(g3);
+        testgr.addGear(g4);
+
+        m2.addToMyGear("skis");
+        m2.addToMyGear("boots");
+        m2.addToMyGear("jacket");
+
+        assertTrue(testTrip.checkEnoughGear(m1));
+        assertTrue(testTrip.checkEnoughGear(m2));
+        
+    }
+    @Test
+    void testCheckEnoughGearPassSomeAndSome() {
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        g3 = new Gear("jacket");
+        g4 = new Gear("climbing shoes");
+        testgr.addGear(g1);
+        testgr.addGear(g2);
+        testgr.addGear(g3);
+        testgr.addGear(g4);
+
+        m2.addToMyGear("skis");
+        m2.addToMyGear("jacket");
+        m1.addToMyGear("boots");
+
+        assertTrue(testTrip.checkEnoughGear(m1));
+        assertTrue(testTrip.checkEnoughGear(m2));
+        
+    }
+
+    
 }
