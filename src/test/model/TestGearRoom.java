@@ -16,8 +16,8 @@ public class TestGearRoom {
     @BeforeEach
     void runBefore(){
         testGearRoom = new GearRoom();
-        g1 = new Gear();
-        g2 = new Gear();
+        g1 = new Gear("A");
+        g2 = new Gear("B");
         gr = testGearRoom.getGearRoom();
     }
 
