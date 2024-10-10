@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,19 +14,28 @@ public class TestTrip {
     Trip testTrip;
     Member m1;
     Member m2;
+    Gear g1;
+    Gear g2;
     List<Member> interested;
     List<Member> committed;
     List<Member> going;
-
+    GearRoom testgr;
+    GearRoom testgr2;
 
     @BeforeEach
     void runBefore(){
         testTrip = new Trip();
         m1 = new Member("A");
         m2 = new Member("B");
+        g1 = new Gear();
+        g2 = new Gear();
+
         going = testTrip.getGoing();
         interested = testTrip.getInterested();
         committed = testTrip.getCommitted();
+        testgr = new GearRoom();
+        testgr2 = new GearRoom();
+
 
     }
 
@@ -73,7 +83,7 @@ public class TestTrip {
         assertEquals(1, interested.size());
         assertEquals(m1, interested.get((0))); 
     }
-
+    @Test
     void testAddMultipleInterested() {
         testTrip.addToInterested(m1);
         testTrip.addToInterested(m2);
@@ -81,4 +91,15 @@ public class TestTrip {
         assertEquals(m1, interested.get(0));
         assertEquals(m2, interested.get(1));
     }
+
+    @Test
+    void testCheckEnoughGear() {
+        assertFalse(testTrip.checkEnoughGear(testgr));
+        testgr.addGear(g1);
+        testgr.addGear(g2);
+        assertTrue(testTrip.checkEnoughGear(testgr));
+        assertTrue(testTrip.checkEnoughGear(testgr));
+        assertFalse(testTrip.checkEnoughGear(testgr));
+    }
+
 }
