@@ -47,13 +47,15 @@ public class TestTrip {
         assertTrue(interested.isEmpty());
     }
 
-    @Test
+    @Test //TODO
     void testAddToGoing(){
         testTrip.addToGoing(m1);
         assertEquals(1, going.size());
         assertEquals(m1, going.get((0)));
+        assertEquals(1, m1.getGoingTrips().size());
+        assertEquals(testTrip, m1.getGoingTrips().get(0));
     }
-    @Test
+    @Test //TODO
     void testAddMultipleGoing() {
         testTrip.addToGoing(m1);
         testTrip.addToGoing(m2);

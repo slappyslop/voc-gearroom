@@ -22,9 +22,11 @@ public class Trip {
     }
     //REQUIRES: Must be invoked by trip leader only
     //MODIFIES: this
-    //EFFECTS: Adds the member to the going list of the trip
+    //EFFECTS: Adds the member to the going list of the trip, 
+    //          adds trip to going of member
     public void addToGoing(Member m) {
         going.add(m);
+        m.registerGoing(this);
 
     }
     //MODIFIES: this
