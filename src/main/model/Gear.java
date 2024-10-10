@@ -7,15 +7,17 @@ public class Gear {
     public String getName() {
         return "A";
     }
-    //REQUIRES: Date must be > 0
-    //MODIFIES: this
-    //EFFECTS: Marks the gear as reserved on a specific date
-    public void reserve(int date) {
+    //REQUIRES: 0 <= start <= end
+    //MODIFIES: this    
+    //EFFECTS: Marks the gear as reserved over a specific date range
+    public void reserve(int start, int end) {
         //TODO 
     }
 
-    //EFFECTS: Returns true if a piece of gear is reserved on a specific date 
-    public boolean isReserved(int date) {
+
+    //REQUIRES: 0 <= start <= end
+    //EFFECTS: Returns true if a piece of gear is reserved over a range of dates
+    public boolean isReserved(int start, int end) {
         return false;
     }
 
