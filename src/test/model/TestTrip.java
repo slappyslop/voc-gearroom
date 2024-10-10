@@ -28,6 +28,7 @@ public class TestTrip {
     List<String> gl;
 
     @BeforeEach
+
     void runBefore(){
         testgr = new GearRoom();
         testgr2 = new GearRoom();
@@ -197,6 +198,14 @@ public class TestTrip {
         assertTrue(testTrip.checkEnoughGear(m1));
         assertTrue(testTrip.checkEnoughGear(m2));
         
+    }
+
+    @Test
+    void testDates() {
+        testTrip.setStartDate(3);
+        testTrip.setEndDate(5);
+        assertEquals(testTrip.getStartDate(), 3);
+        assertEquals(testTrip.getEndDate(), 5);
     }
 
     

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,14 +14,16 @@ public class TestTripAgenda {
     Trip trip1;
     Trip trip2;
     GearRoom gr;
+    List<String> gl;
 
 
     @BeforeEach
     void runBefore(){
         gr = new GearRoom();
         testAgenda = new TripAgenda();
-        trip1 = new Trip(gr);
-        trip2 = new Trip(gr);
+        gl = new ArrayList<String>();
+        trip1 = new Trip(gr, gl);
+        trip2 = new Trip(gr, gl);
     }
 
     @Test

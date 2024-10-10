@@ -32,6 +32,7 @@ public class TestMember {
         assertTrue(m.getGoingTrips().isEmpty());
         assertTrue(m.getInterestedTrips().isEmpty());
         assertTrue(m.getMyGear().isEmpty());
+        assertEquals("Test", m.getName());
     }
     @Test
     void testRegisterGoing() {
