@@ -101,15 +101,38 @@ public class TripApp {
     }
 
     //EFFECTS: Redirects gearmasters to the addgear screen
-    private void mainMenuGearMaster() {
-        System.out.println("Welcome Gearmaster " + currentMember.getName());
+    private void displayMainMenuGearMaster() {
+        String command;
+        System.out.println("\nWelcome Gearmaster " + currentMember.getName());
+        System.out.println("Would you like to: ");
+        System.out.println("\tv -> View gearroom");
+        System.out.println("\tg -> add gear");
+        System.out.println("\tq -> log out");
+        command = input.nextLine();
+        if (command.equals("v")) {
+            viewGearRoom();
+        } else if (command.equals("g")) {
+            addGearToGearroom();
+        } else {
+            return;
+        }
+    }
+
+    private void viewGearRoom() {
+        for (Gear g : gearRoom.getGearRoom()) {
+            System.out.print(g.getName() + ",");
+        }
+        displayMainMenuGearMaster();
+    }
+
+    private void addGearToGearroom() {
         while (true) {
             System.out.println("What is the name of the gear you would like to add");
             String name = input.nextLine();
             Gear currentGear = new Gear(name);
             gearRoom.addGear(currentGear);
-            System.out.println("Gear:" + currentGear.getName()
-                    + "has been successfully added, would you like to add any more gear? (y/n)");
+            System.out.println("Gear: " + currentGear.getName()
+                    + " has been successfully added, would you like to add any more gear? (y/n)");
             String command = input.nextLine();
             if (command.equals("y")) {
                 continue;
@@ -117,13 +140,13 @@ public class TripApp {
                 break;
             }
         }
-
+        displayMainMenuGearMaster();
     }
 
     //MODIFIES: this, currentMember
     //EFFECTS: Creates an instance of a logged in member
     private void logIn() {
-        System.out.println("What is your Name? ");
+        System.out.println("\nWhat is your Name? ");
         String name = input.nextLine();
         currentMember = new Member(name);
     }
@@ -138,7 +161,7 @@ public class TripApp {
             currentMember.setLogInState("member");
             mainMenuMember();
         } else if (command.equals("g")) {
-            mainMenuGearMaster();
+            displayMainMenuGearMaster();
         } else {
             System.out.println("This is not a valid command, please try again:");
         }
