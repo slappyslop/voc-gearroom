@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//TODO: refactor and remove replication
-//TODO: View GearRoom
+
 
 /*
  * Runs Trip management
@@ -118,6 +117,7 @@ public class TripApp {
         }
     }
 
+    //EFFECTS: Prints out list of gear in gearRoom
     private void viewGearRoom() {
         for (Gear g : gearRoom.getGearRoom()) {
             System.out.print(g.getName() + ",");
@@ -125,6 +125,8 @@ public class TripApp {
         displayMainMenuGearMaster();
     }
 
+    //MODIFIES: gearRoom
+    //EFFECTS: Opens interface for gearmaster to add new gear to the gearRoom
     private void addGearToGearroom() {
         while (true) {
             System.out.println("What is the name of the gear you would like to add");
@@ -206,7 +208,7 @@ public class TripApp {
         input.nextLine();
     }
 
-
+    //EFFECTS: Displays all posted trips in order of adding
     private void viewTrips() {
         List<Trip> trips = tripAgenda.getTrips();
         System.out.println("\nTrip Agenda:");
@@ -226,6 +228,8 @@ public class TripApp {
 
     }
 
+    //MODIFIES: t, currentMember
+    //EFFECTS: registers currentMember's interest in t
     private void interest(Trip t) {
         currentMember.registerInterested(t);
         System.out.println("\nThank you for registering as Interested!");
@@ -235,6 +239,9 @@ public class TripApp {
 
     }
 
+    //MODIFIES: t, currentMember, gearRoom
+    //EFFECTS: registers currentMember's commitment to trip t
+    //         also reserves gear where possible for currentMember
     private void commit(Trip t) {
         System.out.println("\nWhat Gear do you currently own? (press q when you are done)");
         for (String s : t.getGearList()) {
@@ -261,6 +268,7 @@ public class TripApp {
 
     }
 
+    //EFFECTS: views a specific trip in detail and allows user to interact with it
     private void viewTrip(int c) {
         String command;
         Trip currentTrip = tripAgenda.getTrips().get(c - 1);
@@ -280,6 +288,7 @@ public class TripApp {
         }
     }
 
+    //EFFECTS: displays a specific trip in detail 
     private void displayTrip(Trip currentTrip) {
         System.out.println("\n" + currentTrip.getName());
         System.out.println("Start Date: " + currentTrip.getStartDate());
@@ -305,7 +314,9 @@ public class TripApp {
         }
 
     }
-
+    
+    //MODIFIES: t, selectedMember
+    //EFFECTS: allows a trip leader to select a member as going on trip t
     private void going(Trip t) {
         while (true) {
             Member selectedMember = null;
@@ -334,6 +345,8 @@ public class TripApp {
 
     }
 
+    //MODIFIES: this, tripAgenda, gearRoom, input
+    //EFFECTS: initializes required objects and examples
     private void init() {
         input = new Scanner(System.in);
         tripAgenda = new TripAgenda();
@@ -352,6 +365,8 @@ public class TripApp {
         initGear();
     }
 
+    //MODIFIES: tripAgenda
+    //EFFECTS: initializes example trips
     private void initTrips() {
         Trip trip1 = new Trip(gearRoom, glski);
         trip1.setName("Backcountry skiing at Elfin Lakes");
@@ -373,6 +388,8 @@ public class TripApp {
         tripAgenda.addTrip(trip3);
     }
 
+    //MODIFIES: gearRoom
+    //EFFECTS: initializes basic gearRoom
     private void initGear() {
         gearRoom.addGear(new Gear("skis"));
         gearRoom.addGear(new Gear("skis"));
