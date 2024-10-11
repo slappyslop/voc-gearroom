@@ -58,8 +58,8 @@ public class TripApp {
 
     //EFFECTS: displays a screen where users get to choose under what role they want to log in
     private void displayLeaderOrMember() {
-        System.out
-                .println("\nHello " + currentMember.getName() + "\nWould you like to log in as a leader, member, or gearmaster?");
+        System.out.print("\nHello " + currentMember.getName());
+        System.out.println("\nWould you like to log in as a leader, member, or gearmaster?");
         System.out.println("\tl -> Leader");
         System.out.println("\tm -> Member");
         System.out.println("\tg -> Gearmaster");
@@ -123,7 +123,7 @@ public class TripApp {
     //MODIFIES: this, currentMember
     //EFFECTS: Creates an instance of a logged in member
     private void logIn() {
-        System.out.println("\n\nWhat is your Name? ");
+        System.out.println("What is your Name? ");
         String name = input.nextLine();
         currentMember = new Member(name);
     }
@@ -140,7 +140,7 @@ public class TripApp {
         } else if (command.equals("g")) {
             mainMenuGearMaster();
         } else {
-            System.out.print("This is not a valid command, please try again:");
+            System.out.println("This is not a valid command, please try again:");
         }
 
     }
@@ -215,7 +215,7 @@ public class TripApp {
     private void commit(Trip t) {
         System.out.println("\nWhat Gear do you currently own? (press q when you are done)");
         for (String s : t.getGearList()) {
-            System.out.println(s);
+            System.out.println(s + ",");
         }
         while (true) {
             String gearName = input.nextLine();
@@ -230,8 +230,7 @@ public class TripApp {
             System.out.println("Gear in the clubroom has been reserved for you.\n");
         } else {
             System.out.println("You have been registered as committed on the trip,");
-            System.out.println(
-                    "but there is not enough gear in the clubroom. Please talk to a quartermaster in person\n");
+            System.out.println("but there isn't enough gear in the clubroom. Please talk to a quartermaster in person");
         }
         System.out.println("Press enter to return to the trips menu");
         input.nextLine();
@@ -259,7 +258,7 @@ public class TripApp {
     }
 
     private void displayTrip(Trip currentTrip) {
-        System.out.println("\n"+currentTrip.getName());
+        System.out.println("\n" + currentTrip.getName());
         System.out.println("Start Date: " + currentTrip.getStartDate());
         System.out.println("End Date: " + currentTrip.getEndDate());
         System.out.print("Going: ");
