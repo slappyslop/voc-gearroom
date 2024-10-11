@@ -3,10 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-//Represents a club trip, having access to a pool of gear, members who are going, committed, and interested, a start and end date,
+//Represents a club trip, with name, access to a pool of gear, members who are going, committed, and interested, a start and end date,
 // and a list of names of required gear
 public class Trip {
 
+    private String name;
     private GearRoom gr; //Accessible pool of club gear
     private List<Member> going; //list of members going on trip
     private List<Member> committed; //list of members committed to trip
@@ -91,6 +92,10 @@ public class Trip {
 
     }
 
+    public void setName(String s) {
+        this.name = s;
+    }
+
     // EFFECTS: Returns list of going members on trip
     public List<Member> getGoing() {
         return going;
@@ -119,6 +124,10 @@ public class Trip {
 
     public int getEndDate() {
         return endDate;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

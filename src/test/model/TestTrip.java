@@ -208,5 +208,11 @@ public class TestTrip {
         assertEquals(testTrip.getEndDate(), 5);
     }
 
+    @Test
+    void testNames(){
+        testTrip.setName("Trip to Garibaldi Park");
+        assertEquals("Trip to Garibaldi Park", testTrip.getName());
+    }
+
     
 }
