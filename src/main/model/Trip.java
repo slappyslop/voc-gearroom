@@ -130,4 +130,8 @@ public class Trip {
         return name;
     }
 
+    public List<String> getGearList() {
+        return gearList;
+    }
+
 }

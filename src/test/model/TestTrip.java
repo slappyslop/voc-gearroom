@@ -52,6 +52,7 @@ public class TestTrip {
         assertTrue(going.isEmpty());
         assertTrue(committed.isEmpty());
         assertTrue(interested.isEmpty());
+        assertEquals(gl, testTrip.getGearList());
     }
 
     @Test 
