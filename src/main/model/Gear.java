@@ -17,11 +17,12 @@ public class Gear {
     public String getName() {
         return name;
     }
+    
     //REQUIRES: 0 <= start <= end, isReserved(start, end) == false
     //MODIFIES: this    
     //EFFECTS: Marks the gear as reserved over a specific date range (inclusive)
     public void reserve(int start, int end) {
-        for(int i = start; i <= end; i++) {
+        for (int i = start; i <= end; i++) {
             reservations.add(i);
         }
     }

@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-//Represents a club trip, with name, access to a pool of gear, members who are going, committed, and interested, a start and end date,
+//Represents a club trip, with name, access to a pool of gear,
+// members who are going, committed, and interested, a start and end date,
 // and a list of names of required gear
 public class Trip {
 
@@ -34,10 +35,10 @@ public class Trip {
         going.add(m);
         m.registerGoing(this);
         if (committed.contains(m)) {
-        committed.remove(m);
+            committed.remove(m);
         }
-        if (interested.contains(m))
-        {interested.remove(m);
+        if (interested.contains(m)) {
+            interested.remove(m);
         }
     }
 
@@ -54,7 +55,8 @@ public class Trip {
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds the member to the committed list of the trip, there should never 
+    // EFFECTS: Adds the member to the committed list of the trip, there should
+    // never
     public void addToInterested(Member m) {
         interested.add(m);
     }
@@ -74,8 +76,9 @@ public class Trip {
                         break;
                     }
                 }
-            } else
+            } else {
                 continue;
+            }
 
         }
         return requiredGear.isEmpty();

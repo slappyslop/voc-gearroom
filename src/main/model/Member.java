@@ -12,8 +12,8 @@ public class Member {
     private String name; // name of the member
     private String logInState;
 
-    //Requires: name is not empty
-    public Member(String name){
+    //Requires: name is unique
+    public Member(String name) {
         this.name = name;
         committed = new ArrayList<Trip>();
         interested = new ArrayList<Trip>();
@@ -23,7 +23,8 @@ public class Member {
     }
 
     //MODIFIES: this, t
-    //EFFECTS: Adds member to committed list of trip, latest member last, also adds trip to committed list of member, returns true if there is enough gear in the gearRoom
+    //EFFECTS: Adds member to committed list of trip, latest member last, also adds trip to committed list of member,
+    //         returns true if there is enough gear in the gearRoom
     public boolean registerCommitted(Trip t) {
         committed.add(t);
         return t.addToCommitted(this);
@@ -35,13 +36,14 @@ public class Member {
         interested.add(t);
         t.addToInterested(this);
     }
+
     //MODIFIES: this
     //EFFECTS: Adds a piece of gear to your owned list, this means you dont want to rent it.
     public void addToMyGear(String s) {
         myGear.add(s);
     }
 
-    public void registerGoing(Trip t){
+    public void registerGoing(Trip t) {
         going.add(t);
     }
 
@@ -57,15 +59,15 @@ public class Member {
         return committed;
     }
 
-    public List<Trip> getInterestedTrips(){
+    public List<Trip> getInterestedTrips() {
         return interested;
     }
 
-    public List<Trip> getGoingTrips(){
+    public List<Trip> getGoingTrips() {
         return going;
     }
 
-    public List<String> getMyGear(){
+    public List<String> getMyGear() {
         return myGear;
     }
 
