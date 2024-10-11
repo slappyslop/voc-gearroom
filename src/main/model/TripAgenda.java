@@ -7,7 +7,7 @@ public class TripAgenda {
 
     private List<Trip> agenda;
 
-    TripAgenda() {
+    public TripAgenda() {
         this.agenda = new ArrayList<>();
     }
     //REQUIRES: trip must not already be in agenda

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class GearRoom {
     private List<Gear> gearRoom;
 
-    GearRoom() {
+    public GearRoom() {
         this.gearRoom = new ArrayList<>();
     }
 
