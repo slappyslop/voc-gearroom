@@ -8,15 +8,15 @@ import java.util.List;
 public class Trip {
 
     private String name;
-    private GearRoom gr; //Accessible pool of club gear
-    private List<Member> going; //list of members going on trip
-    private List<Member> committed; //list of members committed to trip
-    private List<Member> interested; //list of members interested in trip
-    private int startDate; //start date of trip
+    private GearRoom gr; // Accessible pool of club gear
+    private List<Member> going; // list of members going on trip
+    private List<Member> committed; // list of members committed to trip
+    private List<Member> interested; // list of members interested in trip
+    private int startDate; // start date of trip
     private int endDate; // end date of trip
-    private List<String> gearList; //list of gear required for trip per person
+    private List<String> gearList; // list of gear required for trip per person
 
-    //REQUIRES: gearList must not contain duplicates
+    // REQUIRES: gearList must not contain duplicates
     public Trip(GearRoom gr, List<String> gearList) {
         going = new ArrayList<Member>();
         committed = new ArrayList<Member>();
@@ -26,27 +26,35 @@ public class Trip {
 
     }
 
-    // REQUIRES: Must be invoked by trip leader only, committed.contains(m)
+    // REQUIRES: Must be invoked by trip leader only
     // MODIFIES: this
     // EFFECTS: Adds the member to the going list of the trip,
-    // adds trip to going of member
+    // adds trip to going of member, removes from member from committed.
     public void addToGoing(Member m) {
         going.add(m);
         m.registerGoing(this);
-
+        if (committed.contains(m)) {
+        committed.remove(m);
+        }
+        if (interested.contains(m))
+        {interested.remove(m);
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: Adds the member to the committed list of the trip,
     // returns true if there is enough gear in the club room
-    // false if there is not.
+    // false if there is not. Removes member from interested
     public boolean addToCommitted(Member m) {
         committed.add(m);
+        if (interested.contains(m)) {
+            interested.remove(m);
+        }
         return checkEnoughGear(m);
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds the member to the committed list of the trip
+    // EFFECTS: Adds the member to the committed list of the trip, there should never 
     public void addToInterested(Member m) {
         interested.add(m);
     }
@@ -66,7 +74,8 @@ public class Trip {
                         break;
                     }
                 }
-            } else continue;
+            } else
+                continue;
 
         }
         return requiredGear.isEmpty();

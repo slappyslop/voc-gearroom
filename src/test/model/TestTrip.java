@@ -15,6 +15,8 @@ public class TestTrip {
     Trip testTrip;
     Member m1;
     Member m2;
+    Member m3;
+    Member m4;
     Gear g1;
     Gear g2;
     Gear g3;
@@ -36,6 +38,8 @@ public class TestTrip {
         testTrip = new Trip(testgr, gl);
         m1 = new Member("A");
         m2 = new Member("B");
+        m3 = new Member("C");
+        m4 = new Member("D");
         g1 = new Gear("skis");
         g2 = new Gear("boots");
 
@@ -54,40 +58,6 @@ public class TestTrip {
         assertTrue(interested.isEmpty());
         assertEquals(gl, testTrip.getGearList());
     }
-
-    @Test 
-    void testAddToGoing(){
-        testTrip.addToGoing(m1);
-        assertEquals(1, going.size());
-        assertEquals(m1, going.get((0)));
-        assertEquals(1, m1.getGoingTrips().size());
-        assertEquals(testTrip, m1.getGoingTrips().get(0));
-    }
-    @Test 
-    void testAddMultipleGoing() {
-        testTrip.addToGoing(m1);
-        testTrip.addToGoing(m2);
-        assertEquals(2, going.size());
-        assertEquals(m1, going.get(0));
-        assertEquals(m2, going.get(1));
-    }
-
-    @Test
-    void testAddToCommitted() {
-        testTrip.addToCommitted(m1);
-        assertEquals(1, committed.size());
-        assertEquals(m1, committed.get((0)));  
-    }
-
-    @Test
-    void testAddMultipleCommitted() {
-        testTrip.addToCommitted(m1);
-        testTrip.addToCommitted(m2);
-        assertEquals(2, committed.size());
-        assertEquals(m1, committed.get(0));
-        assertEquals(m2, committed.get(1));
-    }
-
     @Test
     void testAddToInterested() {
         testTrip.addToInterested(m1);
@@ -102,6 +72,80 @@ public class TestTrip {
         assertEquals(m1, interested.get(0));
         assertEquals(m2, interested.get(1));
     }
+
+    @Test
+    void testAddToCommitted() {
+        testTrip.addToInterested(m1);
+        testTrip.addToCommitted(m1);
+        assertEquals(1, committed.size());
+        assertEquals(m1, committed.get((0))); 
+        assertFalse(interested.contains(m1)); 
+    }
+
+     @Test
+      void testAddToCommittedOnly() {
+        testTrip.addToCommitted(m1);
+        assertEquals(1, committed.size());
+        assertEquals(m1, committed.get((0))); 
+        assertFalse(interested.contains(m1)); 
+    }
+
+    @Test
+    void testAddMultipleCommitted() {
+        testTrip.addToInterested(m1);
+        testTrip.addToInterested(m2);
+        testTrip.addToCommitted(m1);
+        testTrip.addToCommitted(m2);
+        assertEquals(2, committed.size());
+        assertEquals(m1, committed.get(0));
+        assertEquals(m2, committed.get(1));
+        assertFalse(interested.contains(m1));
+        assertFalse(interested.contains(m2));
+    }
+
+    @Test
+    void testAddMultipleCommittedOnly() {
+        testTrip.addToCommitted(m1);
+        testTrip.addToCommitted(m2);
+        assertEquals(2, committed.size());
+        assertEquals(m1, committed.get(0));
+        assertEquals(m2, committed.get(1));
+        assertFalse(interested.contains(m1));
+        assertFalse(interested.contains(m2));
+    }
+    
+    @Test 
+    void testAddToGoing(){
+        testTrip.addToCommitted(m1);
+        testTrip.addToGoing(m1);
+        assertEquals(1, going.size());
+        assertEquals(m1, going.get((0)));
+        assertEquals(1, m1.getGoingTrips().size());
+        assertEquals(testTrip, m1.getGoingTrips().get(0));
+        assertFalse(committed.contains(m1));
+    }
+    @Test 
+    void testAddMultipleGoing() {
+           testTrip.addToInterested(m3);
+           testTrip.addToInterested(m4);
+        testTrip.addToCommitted(m1);
+        testTrip.addToCommitted(m2);
+        testTrip.addToGoing(m1);
+        testTrip.addToGoing(m2);
+        testTrip.addToGoing(m3);
+        testTrip.addToGoing(m4);
+        assertEquals(4, going.size());
+        assertEquals(m1, going.get(0));
+        assertEquals(m2, going.get(1));
+        assertEquals(m3, going.get(2));
+        assertEquals(m4, going.get(3));
+        assertFalse(committed.contains(m1));
+        assertFalse(committed.contains(m2));
+        assertFalse(interested.contains(m3));
+        assertFalse(interested.contains(m4));
+    }
+
+    
 
     @Test
     void testGetMemberRequiredGearAll() {
