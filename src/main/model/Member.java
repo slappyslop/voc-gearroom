@@ -10,6 +10,7 @@ public class Member {
     private List<Trip> going; //trips the member has gone/ is going on
     private List<String> myGear; //a list of names of gear the member owns
     private String name; // name of the member
+    private String logInState;
 
     //Requires: name is not empty
     public Member(String name){
@@ -44,6 +45,10 @@ public class Member {
         going.add(t);
     }
 
+    public void setLogInState(String s) {
+        this.logInState = s;
+    }
+
     public String getName() {
         return name;
     }
@@ -62,6 +67,10 @@ public class Member {
 
     public List<String> getMyGear(){
         return myGear;
+    }
+
+    public String getLogInState() {
+        return logInState;
     }
 
 

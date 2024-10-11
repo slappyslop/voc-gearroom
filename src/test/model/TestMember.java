@@ -15,7 +15,7 @@ public class TestMember {
     Trip t2;
     GearRoom gr;
     List<String> gl;
-    
+
     @BeforeEach
     void runBefore() {
         m = new Member("Test");
@@ -27,13 +27,14 @@ public class TestMember {
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         assertTrue(m.getCommittedTrips().isEmpty());
         assertTrue(m.getGoingTrips().isEmpty());
         assertTrue(m.getInterestedTrips().isEmpty());
         assertTrue(m.getMyGear().isEmpty());
         assertEquals("Test", m.getName());
     }
+
     @Test
     void testRegisterGoing() {
         m.registerGoing(t1);
@@ -72,6 +73,7 @@ public class TestMember {
         assertEquals(t2, m.getInterestedTrips().get(1));
 
     }
+
     @Test
     void testAddToMyGear() {
         m.addToMyGear("skis");
@@ -81,5 +83,11 @@ public class TestMember {
         assertEquals(2, m.getMyGear().size());
         assertEquals("skis", m.getMyGear().get(0));
         assertEquals("climbing shoes", m.getMyGear().get(1));
-    }   
+    }
+
+    @Test
+    void testLogInStates() {
+        m.setLogInState("leader");
+        assertEquals("leader", m.getLogInState());
+    }
 }
