@@ -104,7 +104,7 @@ public class Trip {
             }
 
         }
-        return null;
+        return requiredGear;
     }
 
     // EFFECTS: Subtracts trip.requiredGear from member.myGear and returns what gear

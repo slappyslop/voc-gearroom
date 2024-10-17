@@ -252,7 +252,6 @@ public class TestTrip {
         gl.add("jacket");
         g3 = new Gear("jacket");
         testgr.addGear(g3);
-        testgr.addGear(g4);
 
         m1.addToMyGear("skis");
         m2.addToMyGear("boots");
