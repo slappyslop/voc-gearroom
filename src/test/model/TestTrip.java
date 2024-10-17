@@ -200,8 +200,8 @@ public class TestTrip {
         testgr.addGear(g3);
         testgr.addGear(g4);
 
-        assertTrue(testTrip.checkEnoughGear(m1));
-        assertFalse(testTrip.checkEnoughGear(m2));
+        assertTrue(testTrip.checkEnoughGear(m1).isEmpty());
+        assertEquals(gl, testTrip.checkEnoughGear(m2));
         
     }
     @Test
@@ -220,8 +220,8 @@ public class TestTrip {
         m2.addToMyGear("boots");
         m2.addToMyGear("jacket");
 
-        assertTrue(testTrip.checkEnoughGear(m1));
-        assertTrue(testTrip.checkEnoughGear(m2));
+        assertTrue(testTrip.checkEnoughGear(m1).isEmpty());
+        assertTrue(testTrip.checkEnoughGear(m2).isEmpty());
         
     }
     @Test
@@ -240,9 +240,31 @@ public class TestTrip {
         m2.addToMyGear("jacket");
         m1.addToMyGear("boots");
 
-        assertTrue(testTrip.checkEnoughGear(m1));
-        assertTrue(testTrip.checkEnoughGear(m2));
+        assertTrue(testTrip.checkEnoughGear(m1).isEmpty());
+        assertTrue(testTrip.checkEnoughGear(m2).isEmpty());
         
+    }
+
+    @Test
+    void testCheckEnoughGearFailSomeAndSome() {
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        g3 = new Gear("jacket");
+        testgr.addGear(g3);
+        testgr.addGear(g4);
+
+        m1.addToMyGear("skis");
+        m2.addToMyGear("boots");
+        List<String> expectedm1 = new ArrayList<String>();
+        List<String> expectedm2 = new ArrayList<String>();
+        expectedm1.add("boots");
+        expectedm2.add("skis");
+        expectedm2.add("jacket");
+        assertEquals(expectedm1, testTrip.checkEnoughGear(m1));
+        assertEquals(expectedm2, testTrip.checkEnoughGear(m2));
+        
+
     }
 
     @Test
