@@ -44,9 +44,9 @@ public class Trip {
 
     // MODIFIES: this
     // EFFECTS: Adds the member to the committed list of the trip,
-    // returns true if there is enough gear in the club room
-    // false if there is not. Removes member from interested
-    public boolean addToCommitted(Member m) {
+    // returns the list of gear that was unable to be reserved,
+    // Removes member from interested
+    public List<String> addToCommitted(Member m) {
         committed.add(m);
         if (interested.contains(m)) {
             interested.remove(m);
@@ -61,11 +61,34 @@ public class Trip {
         interested.add(m);
     }
 
+    // // MODIFIES: this, gr
+    // // EFFECTS: Checks if there is enough unreserved gear for member in the gear
+    // // room
+    // // Marks gear as reserved and returns true if there is, returns false if no gear
+    // public boolean checkEnoughGear(Member m) {
+    //     List<String> requiredGear = getMemberRequiredGear(m);
+    //     for (Gear g : gr.getGearRoom()) {
+    //         if (!g.isReserved(startDate, endDate)) {
+    //             for (String s : requiredGear) {
+    //                 if (g.getName().equals(s)) {
+    //                     g.reserve(startDate, endDate);
+    //                     requiredGear.remove(s);
+    //                     break;
+    //                 }
+    //             }
+    //         } else {
+    //             continue;
+    //         }
+
+    //     }
+    //     return requiredGear.isEmpty();
+    // }
+
     // MODIFIES: this, gr
     // EFFECTS: Checks if there is enough unreserved gear for member in the gear
     // room
-    // Marks gear as reserved and returns true if there is, returns false if no gear
-    public boolean checkEnoughGear(Member m) {
+    // Marks gear as reserved and returns gear that was not possible to reserve
+    public List<String> checkEnoughGear(Member m) {
         List<String> requiredGear = getMemberRequiredGear(m);
         for (Gear g : gr.getGearRoom()) {
             if (!g.isReserved(startDate, endDate)) {
@@ -81,7 +104,7 @@ public class Trip {
             }
 
         }
-        return requiredGear.isEmpty();
+        return null;
     }
 
     // EFFECTS: Subtracts trip.requiredGear from member.myGear and returns what gear

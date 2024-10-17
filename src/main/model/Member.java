@@ -24,8 +24,8 @@ public class Member {
 
     //MODIFIES: this, t
     //EFFECTS: Adds member to committed list of trip, latest member last, also adds trip to committed list of member,
-    //         returns true if there is enough gear in the gearRoom
-    public boolean registerCommitted(Trip t) {
+    //         returns list of gear that was unable to be reserved in the clubroom (gear the member has to arrange for themselves)
+    public List<String> registerCommitted(Trip t) {
         committed.add(t);
         return t.addToCommitted(this);
     }
