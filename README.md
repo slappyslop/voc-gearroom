@@ -21,6 +21,10 @@ This project is of interest to me because I'm an enthusiastic member of the club
 7. As a member, I would like to view everybody interested, committed, and going on the trip
 8. As member, I would like to see if there is enough unreserved gear in the gearroom on the day of the trip for me
 9. As a member, when I am added to a trip, I would like to mark the gear I already have and don't need to rent
+10. As a gearmaster, I would like to save the current state of the Gear Room
+11. As a user, I would like to save the current state of the trip agenda
+12. As a user, I would like to load a Gear Room from file
+13. As a user, I would like to load a Trip Agenda from file
 
 
 
