@@ -29,18 +29,18 @@ public class JsonReader {
     }
 
     // EFFECTS: parses workroom from JSON object and returns it
-    private GearRoom parseWorkRoom(JSONObject jsonObject) {
+    private GearRoom parsGearRoom(JSONObject jsonObject) {
         return null;
     }
 
     // MODIFIES: wr
     // EFFECTS: parses thingies from JSON object and adds them to workroom
-    private void addThingies(GearRoom gr, JSONObject jsonObject) {
+    private void addGears(GearRoom gr, JSONObject jsonObject) {
     }
 
     // MODIFIES: wr
     // EFFECTS: parses thingy from JSON object and adds it to workroom
-    private void addThingy(GearRoom gr, JSONObject jsonObject) {
+    private void addGear(GearRoom gr, JSONObject jsonObject) {
     }
 }
 
