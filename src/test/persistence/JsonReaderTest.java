@@ -34,7 +34,7 @@ public class JsonReaderTest extends JsonGearTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
+        JsonReader reader = new JsonReader("./data/testReaderEmptyGearRoom.json");
         try {
             GearRoom gr = reader.read();
             assertTrue(gr.getGearRoom().isEmpty());
@@ -45,15 +45,22 @@ public class JsonReaderTest extends JsonGearTest {
 
     @Test
     void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
+        JsonReader reader = new JsonReader("./data/testReaderGeneralGearRoom.json");
         try {
             GearRoom gr = reader.read();
-            List<Gear> gears = gr.getGearRoom();
+            List<Gear> gearRoom = gr.getGearRoom();
             List<Integer> g1Integers = new ArrayList<>();
             List<Integer> g2Integers = new ArrayList<>();
-            assertEquals(2, gears.size());
-            checkGear("skis", g1Integers, gears.get(0));
-            checkGear("boots", g2Integers, gears.get(1));
+            g1Integers.add(2);
+            g1Integers.add(3);
+            g1Integers.add(4);
+            g1Integers.add(5);
+            g2Integers.add(1);
+            g2Integers.add(3);
+            g2Integers.add(6);
+            assertEquals(2, gearRoom.size());
+            checkGear("skis", g1Integers, gearRoom.get(0));
+            checkGear("boots", g2Integers, gearRoom.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
