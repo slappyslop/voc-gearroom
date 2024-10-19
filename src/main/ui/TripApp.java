@@ -242,9 +242,7 @@ public class TripApp {
     //MODIFIES: t, currentMember, gearRoom
     //EFFECTS: registers currentMember's commitment to trip t
     //         also reserves gear where possible for currentMember
-    //TODO: change for new checkgear
     private void commit(Trip t) {
-        List<String> unrentableGear;
         System.out.println("\nWhat Gear do you currently own? (press q when you are done)");
         for (String s : t.getGearList()) {
             System.out.println(s + ",");
@@ -257,13 +255,12 @@ public class TripApp {
                 currentMember.addToMyGear(gearName);
             }
         }
-        unrentableGear = currentMember.registerCommitted(t);
+        List<String> unrentableGear = currentMember.registerCommitted(t);
+        System.out.println("Congratulations, you have been registered as committed on the trip");
         if (unrentableGear.isEmpty()) {
-            System.out.println("Congratulations, you have been registered as committed on the trip");
-            System.out.println("Gear in the clubroom has been reserved for you.\n");
+            System.out.println("All required gear is in the club room and reserved for you\n");
         } else {
-            System.out.println("You have been registered as committed on the trip,");
-            System.out.println("but there isn't enough gear in the clubroom. Please talk to a quartermaster in person");
+            System.out.println("However, You must arrange for the following gear yourself:");
             System.out.println(unrentableGear);
         }
         System.out.println("Press enter to return to the trips menu");
