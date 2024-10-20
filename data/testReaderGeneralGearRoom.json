@@ -1,5 +1,5 @@
 {
-    "gear": [
+    "gearRoom": [
         {
             "name": "skis",
             "reservations": [2, 3, 4, 5]
