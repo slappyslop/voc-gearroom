@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
 class JsonWriterTest extends JsonGearTest {
-    GearRoom gr;
-    Gear g1;
-    Gear g2;
+    private GearRoom gr;
+    private Gear g1;
+    private Gear g2;
 
     @BeforeEach
     void runBefore(){

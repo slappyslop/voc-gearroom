@@ -3,8 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents a piece of club gear, having a name and a set of reserved dates
-public class Gear {
+public class Gear implements Writable{
 
     private String name; //name of the gear
     private List<Integer> reservations; //days the gear has been reserved
@@ -41,6 +45,22 @@ public class Gear {
             } 
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("reservations", intsToJson());
+        return json;
     } 
+
+    private JSONArray intsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (int i : reservations) {
+            jsonArray.put(i);
+        }
+        return jsonArray;
+    }
 
 }

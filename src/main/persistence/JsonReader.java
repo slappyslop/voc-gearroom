@@ -2,7 +2,6 @@ package persistence;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.experimental.categories.Category;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
