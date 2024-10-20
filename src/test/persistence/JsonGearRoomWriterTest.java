@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Taken from JSONSERIALIZATIONDEMO
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
-class JsonWriterTest extends JsonGearTest {
+class JsonGearRoomWriterTest extends JsonGearTest {
     private GearRoom gr;
     private Gear g1;
     private Gear g2;
@@ -32,7 +32,7 @@ class JsonWriterTest extends JsonGearTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
+            JsonGearRoomWriter writer = new JsonGearRoomWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {
@@ -43,12 +43,12 @@ class JsonWriterTest extends JsonGearTest {
     @Test
     void testWriterEmptyWorkroom() {
         try {
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyGearRoom.json");
+            JsonGearRoomWriter writer = new JsonGearRoomWriter("./data/testWriterEmptyGearRoom.json");
             writer.open();
             writer.write(gr);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyGearRoom.json");
+            JsonGearRoomReader reader = new JsonGearRoomReader("./data/testWriterEmptyGearRoom.json");
             gr = reader.read();
             assertEquals(0, gr.getGearRoom().size());
         } catch (IOException e) {
@@ -62,12 +62,12 @@ class JsonWriterTest extends JsonGearTest {
             
             gr.addGear(g1);
             gr.addGear(g2);
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralGearRoom.json");
+            JsonGearRoomWriter writer = new JsonGearRoomWriter("./data/testWriterGeneralGearRoom.json");
             writer.open();
             writer.write(gr);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralGearRoom.json");
+            JsonGearRoomReader reader = new JsonGearRoomReader("./data/testWriterGeneralGearRoom.json");
             gr = reader.read();
             List<Gear> gearRoom = gr.getGearRoom();
             List<Integer> g1reservations = new ArrayList<>();

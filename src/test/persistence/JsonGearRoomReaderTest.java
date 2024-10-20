@@ -17,12 +17,12 @@ import model.GearRoom;
  * Taken from JSONSERIALIZATIONDEMO
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
-public class JsonReaderTest extends JsonGearTest {
+public class JsonGearRoomReaderTest extends JsonGearTest {
     GearRoom gr;
 
     @Test
     void testReaderNonExistentFile() {
-        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+        JsonGearRoomReader reader = new JsonGearRoomReader("./data/noSuchFile.json");
         try {
             gr = reader.read();
             fail("IOException expected");
@@ -33,7 +33,7 @@ public class JsonReaderTest extends JsonGearTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyGearRoom.json");
+        JsonGearRoomReader reader = new JsonGearRoomReader("./data/testReaderEmptyGearRoom.json");
         try {
             gr = reader.read();
             assertTrue(gr.getGearRoom().isEmpty());
@@ -44,7 +44,7 @@ public class JsonReaderTest extends JsonGearTest {
 
     @Test
     void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralGearRoom.json");
+        JsonGearRoomReader reader = new JsonGearRoomReader("./data/testReaderGeneralGearRoom.json");
         try {
             gr = reader.read();
             List<Gear> gearRoom = gr.getGearRoom();

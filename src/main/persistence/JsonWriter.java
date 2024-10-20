@@ -1,23 +1,17 @@
 package persistence;
-import java.io.*;
-import model.GearRoom;
+
 import org.json.JSONObject;
+import java.io.*;
 
+import model.GearRoom;
 
-/*Taken from JSONSERIALIZATIONDEMO 
- * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-*/
+public abstract class JsonWriter {
+    protected String destination;
+    protected PrintWriter writer;
 
-// Represents a writer that writes JSON representation of GearRoom to file
-public class JsonWriter {
-    private static final int TAB = 4;
-    private String destination;
-    private PrintWriter writer;
-    
     public JsonWriter(String destination){
         this.destination = destination;
     }
-
 
     // MODIFIES: this
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
@@ -27,11 +21,8 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
-    public void write(GearRoom gr) {
-        JSONObject json = gr.toJson();
-        saveToFile(json.toString(TAB)); 
-    }
+    // EFFECTS: writes JSON representation of Object to file
+    public void write() {}
 
     // MODIFIES: this
     // EFFECTS: closes writer
@@ -41,7 +32,8 @@ public class JsonWriter {
     
     // MODIFIES: this
     // EFFECTS: writes string to file
-    private void saveToFile(String json) {
+    protected void saveToFile(String json) {
         writer.print(json);
     }   
+
 }
