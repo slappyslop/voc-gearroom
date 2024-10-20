@@ -33,8 +33,8 @@ public class TripApp {
     private List<String> glski = new ArrayList<>();
     private List<String> glcamp = new ArrayList<>();
     private List<String> glhike = new ArrayList<>();
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private JsonGearRoomWriter jsonWriter;
+    private JsonGearRoomReader jsonReader;
 
     public TripApp() {
         init();
@@ -390,8 +390,8 @@ public class TripApp {
         input = new Scanner(System.in);
         tripAgenda = new TripAgenda();
         gearRoom = new GearRoom();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonGearRoomWriter(JSON_STORE);
+        jsonReader = new JsonGearRoomReader(JSON_STORE);
         glski.add("skis");
         glski.add("jacket");
         glski.add("boots");
