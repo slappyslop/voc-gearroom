@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import model.Gear;
 import model.GearRoom;
-import persistence.JsonReader;
 
 /*
  * Taken from JSONSERIALIZATIONDEMO

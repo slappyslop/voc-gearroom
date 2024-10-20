@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import model.GearRoom;
 import model.Gear;
 
-import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 /*

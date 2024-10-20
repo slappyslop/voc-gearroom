@@ -3,7 +3,6 @@ import java.io.*;
 import model.GearRoom;
 import org.json.JSONObject;
 
-import model.GearRoom;
 
 /*Taken from JSONSERIALIZATIONDEMO 
  * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
