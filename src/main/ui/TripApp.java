@@ -5,7 +5,10 @@ import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
+import persistence.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,17 +18,26 @@ import java.util.Scanner;
 /*
  * Runs Trip management
  * Very inspired by TellerApp
+ * https://github.students.cs.ubc.ca/CPSC210/TellerApp
+ * Some code taken from 
+ * JSONSERIALIZATIONDEMO
+ * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+ * 
  */
 public class TripApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
     private TripAgenda tripAgenda;
     private GearRoom gearRoom;
-    Member currentMember;
-    List<String> glski = new ArrayList<>();
-    List<String> glcamp = new ArrayList<>();
-    List<String> glhike = new ArrayList<>();
+    private Member currentMember;
+    private List<String> glski = new ArrayList<>();
+    private List<String> glcamp = new ArrayList<>();
+    private List<String> glhike = new ArrayList<>();
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public TripApp() {
+        init();
         runTripApp();
     }
 
@@ -34,8 +46,6 @@ public class TripApp {
     private void runTripApp() {
         boolean keepGoing = true;
         String command = null;
-
-        init();
 
         while (keepGoing) {
             logIn();
@@ -106,22 +116,50 @@ public class TripApp {
         System.out.println("Would you like to: ");
         System.out.println("\tv -> View gearroom");
         System.out.println("\tg -> add gear");
+        System.out.println("\ts -> save gearRoom to file");
+        System.out.println("\tl -> load gearroom from file");
         System.out.println("\tq -> log out");
         command = input.nextLine();
         if (command.equals("v")) {
             viewGearRoom();
         } else if (command.equals("g")) {
             addGearToGearroom();
+        } else if (command.equals("s")) {
+            saveGearRoom();
+        } else if (command.equals("l")) {
+            loadGearRoom();
         } else {
-            return;
+            //
         }
+    }
+
+    private void loadGearRoom() {
+        try {
+            gearRoom = jsonReader.read();
+            System.out.println("Loaded GearRoom from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from " + JSON_STORE);
+        }
+        displayMainMenuGearMaster();
+    }
+
+    private void saveGearRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(gearRoom);
+            jsonWriter.close();
+            System.out.println("Saved Gear Room to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save Gear Room to " + JSON_STORE);
+        }
+        displayMainMenuGearMaster();
     }
 
     //EFFECTS: Prints out list of gear in gearRoom
     private void viewGearRoom() {
         for (Gear g : gearRoom.getGearRoom()) {
             System.out.print(g.getName() + ",");
-        }
+        }  
         displayMainMenuGearMaster();
     }
 
@@ -352,6 +390,8 @@ public class TripApp {
         input = new Scanner(System.in);
         tripAgenda = new TripAgenda();
         gearRoom = new GearRoom();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         glski.add("skis");
         glski.add("jacket");
         glski.add("boots");
