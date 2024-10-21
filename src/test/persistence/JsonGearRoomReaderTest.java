@@ -17,7 +17,7 @@ import model.GearRoom;
  * Taken from JSONSERIALIZATIONDEMO
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
-public class JsonGearRoomReaderTest extends JsonGearTest {
+public class JsonGearRoomReaderTest extends JsonTests {
     GearRoom gr;
 
     @Test

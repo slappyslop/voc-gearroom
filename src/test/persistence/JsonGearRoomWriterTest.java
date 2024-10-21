@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Taken from JSONSERIALIZATIONDEMO
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
-class JsonGearRoomWriterTest extends JsonGearTest {
+class JsonGearRoomWriterTest extends JsonTests {
     private GearRoom gr;
     private Gear g1;
     private Gear g2;

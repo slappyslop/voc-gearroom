@@ -16,11 +16,11 @@ import model.GearRoom;
 */
 
 // Represents a reader that reads workroom from JSON data stored in file
-public class JsonReader {
+public class JsonGearRoomReader {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    public JsonReader(String source) {
+    public JsonGearRoomReader(String source) {
         this.source = source; 
     }
 

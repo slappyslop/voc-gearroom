@@ -1,9 +1,7 @@
 package persistence;
-
-import org.json.JSONObject;
 import java.io.*;
 
-import model.GearRoom;
+
 
 public abstract class JsonWriter {
     protected String destination;
