@@ -9,7 +9,7 @@ import java.util.List;
 public class Trip {
 
     private String name;
-    private GearRoom gr; // Accessible pool of club gear
+    //private GearRoom gr; // Accessible pool of club gear
     private List<Member> going; // list of members going on trip
     private List<Member> committed; // list of members committed to trip
     private List<Member> interested; // list of members interested in trip
@@ -18,11 +18,10 @@ public class Trip {
     private List<String> gearList; // list of gear required for trip per person
 
     // REQUIRES: gearList must not contain duplicates
-    public Trip(GearRoom gr, List<String> gearList) {
+    public Trip(List<String> gearList) {
         going = new ArrayList<Member>();
         committed = new ArrayList<Member>();
         interested = new ArrayList<Member>();
-        this.gr = gr;
         this.gearList = gearList;
 
     }
@@ -46,12 +45,12 @@ public class Trip {
     // EFFECTS: Adds the member to the committed list of the trip,
     // returns the list of gear that was unable to be reserved,
     // Removes member from interested
-    public List<String> addToCommitted(Member m) {
+    public List<String> addToCommitted(Member m, GearRoom gr) {
         committed.add(m);
         if (interested.contains(m)) {
             interested.remove(m);
         }
-        return checkEnoughGear(m);
+        return checkEnoughGear(m, gr);
     }
 
     // MODIFIES: this
@@ -61,34 +60,7 @@ public class Trip {
         interested.add(m);
     }
 
-    // // MODIFIES: this, gr
-    // // EFFECTS: Checks if there is enough unreserved gear for member in the gear
-    // // room
-    // // Marks gear as reserved and returns true if there is, returns false if no gear
-    // public boolean checkEnoughGear(Member m) {
-    //     List<String> requiredGear = getMemberRequiredGear(m);
-    //     for (Gear g : gr.getGearRoom()) {
-    //         if (!g.isReserved(startDate, endDate)) {
-    //             for (String s : requiredGear) {
-    //                 if (g.getName().equals(s)) {
-    //                     g.reserve(startDate, endDate);
-    //                     requiredGear.remove(s);
-    //                     break;
-    //                 }
-    //             }
-    //         } else {
-    //             continue;
-    //         }
-
-    //     }
-    //     return requiredGear.isEmpty();
-    // }
-
-    // MODIFIES: this, gr
-    // EFFECTS: Checks if there is enough unreserved gear for member in the gear
-    // room
-    // Marks gear as reserved and returns gear that was not possible to reserve
-    public List<String> checkEnoughGear(Member m) {
+    public List<String> checkEnoughGear(Member m, GearRoom gr) {
         List<String> requiredGear = getMemberRequiredGear(m);
         for (Gear g : gr.getGearRoom()) {
             if (!g.isReserved(startDate, endDate)) {

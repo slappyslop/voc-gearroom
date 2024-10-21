@@ -5,7 +5,6 @@ import java.util.List;
 
 //Represents the trip agenda, a list of club trips
 public class TripAgenda {
-
     private List<Trip> agenda;
 
     public TripAgenda() {

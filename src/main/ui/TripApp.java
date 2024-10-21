@@ -25,18 +25,21 @@ import java.util.Scanner;
  * 
  */
 public class TripApp {
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/gearroom.json";
     private Scanner input;
     private TripAgenda tripAgenda;
     private GearRoom gearRoom;
     private Member currentMember;
-    private List<String> glski = new ArrayList<>();
-    private List<String> glcamp = new ArrayList<>();
-    private List<String> glhike = new ArrayList<>();
+    private List<String> glski;
+    private List<String> glcamp;
+    private List<String> glhike;
     private JsonGearRoomWriter jsonWriter;
     private JsonGearRoomReader jsonReader;
 
     public TripApp() {
+        glski = new ArrayList<>();
+        glcamp = new ArrayList<>();
+        glhike = new ArrayList<>();
         init();
         runTripApp();
     }
@@ -226,7 +229,7 @@ public class TripApp {
                 gl.add(gearName.toLowerCase());
             }
         }
-        currentTrip = new Trip(gearRoom, gl);
+        currentTrip = new Trip(gl);
         modifyATrip(currentTrip, name);
         tripAgenda.addTrip(currentTrip);
         System.out.println("Thank you for creating a trip! \n Your trip has now been added to the agenda");
@@ -293,7 +296,7 @@ public class TripApp {
                 currentMember.addToMyGear(gearName);
             }
         }
-        List<String> unrentableGear = currentMember.registerCommitted(t);
+        List<String> unrentableGear = currentMember.registerCommitted(t, gearRoom);
         System.out.println("Congratulations, you have been registered as committed on the trip");
         if (unrentableGear.isEmpty()) {
             System.out.println("All required gear is in the club room and reserved for you\n");
@@ -409,17 +412,17 @@ public class TripApp {
     //MODIFIES: tripAgenda
     //EFFECTS: initializes example trips
     private void initTrips() {
-        Trip trip1 = new Trip(gearRoom, glski);
+        Trip trip1 = new Trip(glski);
         trip1.setName("Backcountry skiing at Elfin Lakes");
         trip1.setStartDate(1);
         trip1.setEndDate(2);
 
-        Trip trip2 = new Trip(gearRoom, glhike);
+        Trip trip2 = new Trip(glhike);
         trip2.setName("Hiking at Hollyburn");
         trip2.setStartDate(2);
         trip2.setEndDate(5);
 
-        Trip trip3 = new Trip(gearRoom, glcamp);
+        Trip trip3 = new Trip(glcamp);
         trip3.setName("Camping in the Fraser Valley");
         trip3.setStartDate(3);
         trip3.setEndDate(4);

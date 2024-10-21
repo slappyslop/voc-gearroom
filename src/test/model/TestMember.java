@@ -21,8 +21,8 @@ public class TestMember {
         m = new Member("Test");
         gr = new GearRoom();
         gl = new ArrayList<>();
-        t1 = new Trip(gr, gl);
-        t2 = new Trip(gr, gl);
+        t1 = new Trip(gl);
+        t2 = new Trip(gl);
 
     }
 
@@ -48,12 +48,12 @@ public class TestMember {
 
     @Test
     void testRegisterCommitted() {
-        m.registerCommitted(t1);
+        m.registerCommitted(t1, gr);
         assertEquals(1, m.getCommittedTrips().size());
         assertEquals(t1, m.getCommittedTrips().get(0));
         assertEquals(1, t1.getCommitted().size());
         assertEquals(m, t1.getCommitted().get(0));
-        m.registerCommitted(t2);
+        m.registerCommitted(t2, gr);
         assertEquals(2, m.getCommittedTrips().size());
         assertEquals(t1, m.getCommittedTrips().get(0));
         assertEquals(t2, m.getCommittedTrips().get(1));

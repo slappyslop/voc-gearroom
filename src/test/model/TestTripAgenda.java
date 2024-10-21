@@ -22,8 +22,8 @@ public class TestTripAgenda {
         gr = new GearRoom();
         testAgenda = new TripAgenda();
         gl = new ArrayList<String>();
-        trip1 = new Trip(gr, gl);
-        trip2 = new Trip(gr, gl);
+        trip1 = new Trip(gl);
+        trip2 = new Trip(gl);
     }
 
     @Test

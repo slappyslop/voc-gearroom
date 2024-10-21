@@ -26,16 +26,14 @@ public class TestTrip {
     List<Member> committed;
     List<Member> going;
     GearRoom testgr;
-    GearRoom testgr2;
     List<String> gl;
 
     @BeforeEach
 
     void runBefore(){
         testgr = new GearRoom();
-        testgr2 = new GearRoom();
         gl = new ArrayList<String>();
-        testTrip = new Trip(testgr, gl);
+        testTrip = new Trip(gl);
         m1 = new Member("A");
         m2 = new Member("B");
         m3 = new Member("C");
@@ -76,7 +74,7 @@ public class TestTrip {
     @Test
     void testAddToCommitted() {
         testTrip.addToInterested(m1);
-        testTrip.addToCommitted(m1);
+        testTrip.addToCommitted(m1, testgr);
         assertEquals(1, committed.size());
         assertEquals(m1, committed.get((0))); 
         assertFalse(interested.contains(m1)); 
@@ -84,7 +82,7 @@ public class TestTrip {
 
      @Test
       void testAddToCommittedOnly() {
-        testTrip.addToCommitted(m1);
+        testTrip.addToCommitted(m1, testgr);
         assertEquals(1, committed.size());
         assertEquals(m1, committed.get((0))); 
         assertFalse(interested.contains(m1)); 
@@ -94,8 +92,8 @@ public class TestTrip {
     void testAddMultipleCommitted() {
         testTrip.addToInterested(m1);
         testTrip.addToInterested(m2);
-        testTrip.addToCommitted(m1);
-        testTrip.addToCommitted(m2);
+        testTrip.addToCommitted(m1, testgr);
+        testTrip.addToCommitted(m2, testgr);
         assertEquals(2, committed.size());
         assertEquals(m1, committed.get(0));
         assertEquals(m2, committed.get(1));
@@ -105,8 +103,8 @@ public class TestTrip {
 
     @Test
     void testAddMultipleCommittedOnly() {
-        testTrip.addToCommitted(m1);
-        testTrip.addToCommitted(m2);
+        testTrip.addToCommitted(m1, testgr);
+        testTrip.addToCommitted(m2, testgr);
         assertEquals(2, committed.size());
         assertEquals(m1, committed.get(0));
         assertEquals(m2, committed.get(1));
@@ -116,7 +114,7 @@ public class TestTrip {
     
     @Test 
     void testAddToGoing(){
-        testTrip.addToCommitted(m1);
+        testTrip.addToCommitted(m1, testgr);
         testTrip.addToGoing(m1);
         assertEquals(1, going.size());
         assertEquals(m1, going.get((0)));
@@ -126,10 +124,10 @@ public class TestTrip {
     }
     @Test 
     void testAddMultipleGoing() {
-           testTrip.addToInterested(m3);
-           testTrip.addToInterested(m4);
-        testTrip.addToCommitted(m1);
-        testTrip.addToCommitted(m2);
+        testTrip.addToInterested(m3);
+        testTrip.addToInterested(m4);
+        testTrip.addToCommitted(m1, testgr);
+        testTrip.addToCommitted(m2, testgr);
         testTrip.addToGoing(m1);
         testTrip.addToGoing(m2);
         testTrip.addToGoing(m3);
@@ -200,8 +198,8 @@ public class TestTrip {
         testgr.addGear(g3);
         testgr.addGear(g4);
 
-        assertTrue(testTrip.checkEnoughGear(m1).isEmpty());
-        assertEquals(gl, testTrip.checkEnoughGear(m2));
+        assertTrue(testTrip.checkEnoughGear(m1, testgr).isEmpty());
+        assertEquals(gl, testTrip.checkEnoughGear(m2, testgr));
         
     }
     @Test
@@ -220,8 +218,8 @@ public class TestTrip {
         m2.addToMyGear("boots");
         m2.addToMyGear("jacket");
 
-        assertTrue(testTrip.checkEnoughGear(m1).isEmpty());
-        assertTrue(testTrip.checkEnoughGear(m2).isEmpty());
+        assertTrue(testTrip.checkEnoughGear(m1, testgr).isEmpty());
+        assertTrue(testTrip.checkEnoughGear(m2, testgr).isEmpty());
         
     }
     @Test
@@ -240,8 +238,8 @@ public class TestTrip {
         m2.addToMyGear("jacket");
         m1.addToMyGear("boots");
 
-        assertTrue(testTrip.checkEnoughGear(m1).isEmpty());
-        assertTrue(testTrip.checkEnoughGear(m2).isEmpty());
+        assertTrue(testTrip.checkEnoughGear(m1, testgr).isEmpty());
+        assertTrue(testTrip.checkEnoughGear(m2, testgr).isEmpty());
         
     }
 
@@ -260,8 +258,8 @@ public class TestTrip {
         expectedm1.add("boots");
         expectedm2.add("skis");
         expectedm2.add("jacket");
-        assertEquals(expectedm1, testTrip.checkEnoughGear(m1));
-        assertEquals(expectedm2, testTrip.checkEnoughGear(m2));
+        assertEquals(expectedm1, testTrip.checkEnoughGear(m1, testgr));
+        assertEquals(expectedm2, testTrip.checkEnoughGear(m2, testgr));
         
 
     }

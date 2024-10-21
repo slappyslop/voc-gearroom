@@ -24,10 +24,10 @@ public class Member {
 
     //MODIFIES: this, t
     //EFFECTS: Adds member to committed list of trip, latest member last, also adds trip to committed list of member,
-    //         returns list of gear that was unable to be reserved in the clubroom (gear the member has to arrange for themselves)
-    public List<String> registerCommitted(Trip t) {
+    //         returns list of gear that was unable to be reserved in the clubroom
+    public List<String> registerCommitted(Trip t, GearRoom gr) {
         committed.add(t);
-        return t.addToCommitted(this);
+        return t.addToCommitted(this, gr);
     }
 
     //MODIFIES: this, t
@@ -43,6 +43,9 @@ public class Member {
         myGear.add(s);
     }
 
+    //REQUIRES: called by Trip.addToGoing()
+    //MODIFIES: this
+    //EFFECTS: Adds a trip to this member's going list
     public void registerGoing(Trip t) {
         going.add(t);
     }
