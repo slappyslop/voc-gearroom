@@ -6,6 +6,7 @@ import java.util.List;
 import model.Gear;
 
 import model.Trip;
+import model.Member;
 
 
 /*Inspired by JSONSERIALIZATIONDEMO 
@@ -25,5 +26,4 @@ public class JsonTests {
         assertEquals(t.getGearList(), jsont.getGearList());
 
     }
-
 }
