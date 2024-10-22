@@ -1,0 +1,140 @@
+{
+    "agenda": [
+        {
+            "name": "Backcountry skiing at Elfin Lakes",
+            "going": [
+                {
+                    "name": "Shravan",
+                    "committed": [
+                        "Backcountry skiing at Elfin Lakes"
+                    ],
+                    "interested": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "going": [
+                        "Backcountry skiing at Elfin Lakes"
+                    ]
+                }
+            ],
+            "committed": [
+                {
+                    "name": "Kumar",
+                    "committed": [
+                        "Backcountry skiing at Elfin Lakes",
+                        "Camping in the Fraser Valley"
+                    ],
+                    "interested": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "going": []
+                }
+            ],
+            "interested": [
+                {
+                    "name": "A",
+                    "committed": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "interested": [
+                        "Backcountry skiing at Elfin Lakes",
+                        "Camping in the Fraser Valley"
+                    ],
+                    "going": []
+                }
+            ],
+            "startDate": 1,
+            "endDate": 2,
+            "gearList": [
+                "skis",
+                "jacket",
+                "boots"
+            ]
+        },
+        {
+            "name": "Hiking at Hollyburn",
+            "going": [],
+            "committed": [
+                {
+                    "name": "A",
+                    "committed": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "interested": [
+                        "Backcountry skiing at Elfin Lakes",
+                        "Camping in the Fraser Valley"
+                    ],
+                    "going": []
+                }
+            ],
+            "interested": [
+                {
+                    "name": "Kumar",
+                    "committed": [
+                        "Backcountry skiing at Elfin Lakes",
+                        "Camping in the Fraser Valley"
+                    ],
+                    "interested": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "going": []
+                },
+                {
+                    "name": "Shravan",
+                    "committed": [
+                        "Backcountry skiing at Elfin Lakes"
+                    ],
+                    "interested": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "going": [
+                        "Backcountry skiing at Elfin Lakes"
+                    ]
+                }
+            ],
+            "startDate": 2,
+            "endDate": 5,
+            "gearList": [
+                "boots",
+                "poles",
+                "fleece"
+            ]
+        },
+        {
+            "name": "Camping in the Fraser Valley",
+            "going": [],
+            "committed": [
+                {
+                    "name": "Kumar",
+                    "committed": [
+                        "Backcountry skiing at Elfin Lakes",
+                        "Camping in the Fraser Valley"
+                    ],
+                    "interested": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "going": []
+                }
+            ],
+            "interested": [
+                {
+                    "name": "A",
+                    "committed": [
+                        "Hiking at Hollyburn"
+                    ],
+                    "interested": [
+                        "Backcountry skiing at Elfin Lakes",
+                        "Camping in the Fraser Valley"
+                    ],
+                    "going": []
+                }
+            ],
+            "startDate": 3,
+            "endDate": 4,
+            "gearList": [
+                "sleeping bag",
+                "jacket",
+                "stove"
+            ]
+        }
+    ]
+}

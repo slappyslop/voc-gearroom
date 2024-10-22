@@ -1,0 +1,15 @@
+{"gearRoom": [
+    {
+        "reservations": [
+            1,
+            2,
+            3,
+            5
+        ],
+        "name": "shoes"
+    },
+    {
+        "reservations": [],
+        "name": "pants"
+    }
+]}
