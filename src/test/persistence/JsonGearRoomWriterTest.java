@@ -18,12 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class JsonGearRoomWriterTest extends JsonTests {
     private GearRoom gr;
+    private GearRoom gr2;
     private Gear g1;
     private Gear g2;
 
     @BeforeEach
     void runBefore(){
-        gr= new GearRoom();
+        gr = new GearRoom();
         g1 = new Gear("shoes");
         g2 = new Gear("pants");
         g1.reserve(1, 3);
@@ -41,7 +42,7 @@ class JsonGearRoomWriterTest extends JsonTests {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyGearRoom() {
         try {
             JsonGearRoomWriter writer = new JsonGearRoomWriter("./data/testWriterEmptyGearRoom.json");
             writer.open();
@@ -49,15 +50,15 @@ class JsonGearRoomWriterTest extends JsonTests {
             writer.close();
 
             JsonGearRoomReader reader = new JsonGearRoomReader("./data/testWriterEmptyGearRoom.json");
-            gr = reader.read();
-            assertEquals(0, gr.getGearRoom().size());
+            gr2 = reader.read();
+            assertEquals(0, gr2.getGearRoom().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralGearRoom() {
         try {
             
             gr.addGear(g1);
@@ -68,8 +69,8 @@ class JsonGearRoomWriterTest extends JsonTests {
             writer.close();
 
             JsonGearRoomReader reader = new JsonGearRoomReader("./data/testWriterGeneralGearRoom.json");
-            gr = reader.read();
-            List<Gear> gearRoom = gr.getGearRoom();
+            gr2 = reader.read();
+            List<Gear> gearRoom = gr2.getGearRoom();
             List<Integer> g1reservations = new ArrayList<>();
             List<Integer> g2reservations = new ArrayList<>();
             g1reservations.add(1);
