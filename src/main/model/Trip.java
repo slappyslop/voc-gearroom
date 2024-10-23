@@ -32,7 +32,7 @@ public class Trip {
     // adds trip to going of member, removes from member from committed.
     public void addToGoing(Member m) {
         going.add(m);
-        m.registerGoing(this);
+        // m.registerGoing(this);
         if (committed.contains(m)) {
             committed.remove(m);
         }
