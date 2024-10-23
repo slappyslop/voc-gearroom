@@ -28,50 +28,25 @@ public class TestMember {
 
     @Test
     void testConstructor() {
-        // assertTrue(m.getCommittedTrips().isEmpty());
-        // assertTrue(m.getGoingTrips().isEmpty());
-        // assertTrue(m.getInterestedTrips().isEmpty());
         assertTrue(m.getMyGear().isEmpty());
         assertEquals("Test", m.getName());
     }
 
-    // @Test
-    // void testRegisterGoing() {
-    //     m.registerGoing(t1);
-    //     assertEquals(1, m.getGoingTrips().size());
-    //     assertEquals(t1, m.getGoingTrips().get(0));
-    //     m.registerGoing(t2);
-    //     assertEquals(2, m.getGoingTrips().size());
-    //     assertEquals(t1, m.getGoingTrips().get(0));
-    //     assertEquals(t2, m.getGoingTrips().get(1));
-    // }
-
     @Test
     void testRegisterCommitted() {
         m.registerCommitted(t1, gr);
-        // assertEquals(1, m.getCommittedTrips().size());
-        // assertEquals(t1, m.getCommittedTrips().get(0));
         assertEquals(1, t1.getCommitted().size());
         assertEquals(m, t1.getCommitted().get(0));
         m.registerCommitted(t2, gr);
-        // assertEquals(2, m.getCommittedTrips().size());
-        // assertEquals(t1, m.getCommittedTrips().get(0));
-        // assertEquals(t2, m.getCommittedTrips().get(1));
+
 
     }
 
     @Test
     void testRegisterInterested() {
         m.registerInterested(t1);
-        // assertEquals(1, m.getInterestedTrips().size());
-        // assertEquals(t1, m.getInterestedTrips().get(0));
         assertEquals(1, t1.getInterested().size());
         assertEquals(m, t1.getInterested().get(0));
-        // m.registerInterested(t2);
-        // assertEquals(2, m.getInterestedTrips().size());
-        // assertEquals(t1, m.getInterestedTrips().get(0));
-        // assertEquals(t2, m.getInterestedTrips().get(1));
-
     }
 
     @Test

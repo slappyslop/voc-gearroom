@@ -118,8 +118,6 @@ public class TestTrip {
         testTrip.addToGoing(m1);
         assertEquals(1, going.size());
         assertEquals(m1, going.get((0)));
-        assertEquals(1, m1.getGoingTrips().size());
-        assertEquals(testTrip, m1.getGoingTrips().get(0));
         assertFalse(committed.contains(m1));
     }
     @Test 
