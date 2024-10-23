@@ -19,10 +19,6 @@ public abstract class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of Object to file
-    public void write() {}
-
-    // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
         writer.close();
