@@ -9,7 +9,6 @@ import java.util.List;
 public class Trip {
 
     private String name;
-    //private GearRoom gr; // Accessible pool of club gear
     private List<Member> going; // list of members going on trip
     private List<Member> committed; // list of members committed to trip
     private List<Member> interested; // list of members interested in trip
@@ -32,7 +31,6 @@ public class Trip {
     // adds trip to going of member, removes from member from committed.
     public void addToGoing(Member m) {
         going.add(m);
-        // m.registerGoing(this);
         if (committed.contains(m)) {
             committed.remove(m);
         }

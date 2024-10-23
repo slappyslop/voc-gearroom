@@ -12,9 +12,6 @@ public class Member {
     //Requires: name is unique
     public Member(String name) {
         this.name = name;
-        // committed = new ArrayList<Trip>();
-        // interested = new ArrayList<Trip>();
-        // going = new ArrayList<Trip>();
         myGear = new ArrayList<String>();
 
     }
@@ -23,14 +20,12 @@ public class Member {
     //EFFECTS: Adds member to committed list of trip, latest member last, also adds trip to committed list of member,
     //         returns list of gear that was unable to be reserved in the clubroom
     public List<String> registerCommitted(Trip t, GearRoom gr) {
-        // committed.add(t);
         return t.addToCommitted(this, gr);
     }
 
     //MODIFIES: this, t
     //EFFECTS: Adds member to interested list of trip, latest member last, also adds trip to interested list of member
     public void registerInterested(Trip t) {
-        // interested.add(t);
         t.addToInterested(this);
     }
 
@@ -40,12 +35,6 @@ public class Member {
         myGear.add(s);
     }
 
-    //REQUIRES: called by Trip.addToGoing()
-    //MODIFIES: this
-    //EFFECTS: Adds a trip to this member's going list
-    // public void registerGoing(Trip t) {
-    //     going.add(t);
-    // }
 
     public void setLogInState(String s) {
         this.logInState = s;
@@ -54,18 +43,6 @@ public class Member {
     public String getName() {
         return name;
     }
-
-    // public List<Trip> getCommittedTrips() {
-    //     return committed;
-    // }
-
-    // public List<Trip> getInterestedTrips() {
-    //     return interested;
-    // }
-
-    // public List<Trip> getGoingTrips() {
-    //     return going;
-    // }
 
     public List<String> getMyGear() {
         return myGear;
