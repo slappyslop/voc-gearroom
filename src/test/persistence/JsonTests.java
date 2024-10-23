@@ -1,6 +1,7 @@
 package persistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 import model.Gear;
@@ -19,11 +20,26 @@ public class JsonTests {
     }
 
     protected void checkTrip(Trip t, Trip jsont) {
-        assertEquals(t.getGoing(), jsont.getGoing());
-        assertEquals(t.getCommitted(), jsont.getCommitted());
-        assertEquals(t.getInterested(), jsont.getInterested());
-        assertEquals(t.getStartDate(), t.getEndDate());
+        assertEquals(t.getStartDate(), jsont.getStartDate());
+        assertEquals(t.getEndDate(), jsont.getEndDate());
         assertEquals(t.getGearList(), jsont.getGearList());
+        for (Member m : t.getCommitted()) {
+            checkMember(m, jsont.getCommitted().get(t.getCommitted().indexOf(m)));
+        }
+        for (Member m : t.getGoing()) {
+            checkMember(m, jsont.getGoing().get(t.getGoing().indexOf(m)));
+        }
+        for (Member m : t.getInterested()) {
+            checkMember(m, jsont.getInterested().get(t.getInterested().indexOf(m)));
+        }
 
+    }
+
+    private void checkMember(Member tripM, Member jsonM) {
+        assertEquals(tripM.getMyGear(), jsonM.getMyGear());
+        assertEquals(tripM.getName(), jsonM.getName());
+        assertNull(tripM.getLogInState());
+        assertNull(jsonM.getLogInState());
+        
     }
 }

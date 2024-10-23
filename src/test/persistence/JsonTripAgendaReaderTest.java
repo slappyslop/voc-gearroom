@@ -75,9 +75,9 @@ public class JsonTripAgendaReaderTest extends JsonTests {
     private void initializeTripAgenda() {
         testTa = new TripAgenda();
         gr = new GearRoom();
-        List<String> glski = new ArrayList<String>();
-        List<String> glcamp = new ArrayList<String>();
-        List<String> glhike = new ArrayList<String>();
+        glski = new ArrayList<String>();
+        glcamp = new ArrayList<String>();
+        glhike = new ArrayList<String>();
         glski.add("skis");
         glski.add("jacket");
         glski.add("boots");
