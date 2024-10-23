@@ -5,41 +5,19 @@
             "going": [
                 {
                     "name": "Shravan",
-                    "committed": [
-                        "Backcountry skiing at Elfin Lakes"
-                    ],
-                    "interested": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "going": [
-                        "Backcountry skiing at Elfin Lakes"
-                    ]
+                    "myGear" : ["boots"]
                 }
             ],
             "committed": [
                 {
                     "name": "Kumar",
-                    "committed": [
-                        "Backcountry skiing at Elfin Lakes",
-                        "Camping in the Fraser Valley"
-                    ],
-                    "interested": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "going": []
+                    "myGear" : []
                 }
             ],
             "interested": [
                 {
                     "name": "A",
-                    "committed": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "interested": [
-                        "Backcountry skiing at Elfin Lakes",
-                        "Camping in the Fraser Valley"
-                    ],
-                    "going": []
+                    "myGear" : []
                 }
             ],
             "startDate": 1,
@@ -56,39 +34,17 @@
             "committed": [
                 {
                     "name": "A",
-                    "committed": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "interested": [
-                        "Backcountry skiing at Elfin Lakes",
-                        "Camping in the Fraser Valley"
-                    ],
-                    "going": []
+                    "myGear" : []
                 }
             ],
             "interested": [
                 {
                     "name": "Kumar",
-                    "committed": [
-                        "Backcountry skiing at Elfin Lakes",
-                        "Camping in the Fraser Valley"
-                    ],
-                    "interested": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "going": []
+                    "myGear" : []
                 },
                 {
                     "name": "Shravan",
-                    "committed": [
-                        "Backcountry skiing at Elfin Lakes"
-                    ],
-                    "interested": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "going": [
-                        "Backcountry skiing at Elfin Lakes"
-                    ]
+                    "myGear" : ["boots"]
                 }
             ],
             "startDate": 2,
@@ -105,32 +61,19 @@
             "committed": [
                 {
                     "name": "Kumar",
-                    "committed": [
-                        "Backcountry skiing at Elfin Lakes",
-                        "Camping in the Fraser Valley"
-                    ],
-                    "interested": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "going": []
+                    "myGear" : []
                 }
             ],
             "interested": [
                 {
                     "name": "A",
-                    "committed": [
-                        "Hiking at Hollyburn"
-                    ],
-                    "interested": [
-                        "Backcountry skiing at Elfin Lakes",
-                        "Camping in the Fraser Valley"
-                    ],
-                    "going": []
+                    "myGear" : []
                 }
             ],
             "startDate": 3,
             "endDate": 4,
             "gearList": [
+                "tent",
                 "sleeping bag",
                 "jacket",
                 "stove"
