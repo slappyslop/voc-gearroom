@@ -36,7 +36,7 @@ public class JsonTripAgendaReaderTest extends JsonTests {
 
     @Test
     void testReaderNonExistentFile() {
-        JsonTripAgendaReader reader = new JsonTripAgendaReader("./data/noSuchFile.json");
+        JsonTripAgendaReader reader = new JsonTripAgendaReader("./data/noSuchFile.json", gr);
         try {
             testTa = reader.read();
             fail("IOException expected");
@@ -47,7 +47,7 @@ public class JsonTripAgendaReaderTest extends JsonTests {
 
     @Test
     void testReaderEmptyTripAgenda() {
-        JsonTripAgendaReader reader = new JsonTripAgendaReader("./data/testReaderEmptyTripAgenda.json");
+        JsonTripAgendaReader reader = new JsonTripAgendaReader("./data/testReaderEmptyTripAgenda.json", gr);
         try {
             testTa = reader.read();
             assertTrue(testTa.getTrips().isEmpty());
@@ -60,7 +60,7 @@ public class JsonTripAgendaReaderTest extends JsonTests {
     @Test
     void testReaderGeneralTripAgenda() {
         initializeTripAgenda();
-        JsonTripAgendaReader reader = new JsonTripAgendaReader("./data/testReaderGeneralTripAgenda.json");
+        JsonTripAgendaReader reader = new JsonTripAgendaReader("./data/testReaderGeneralTripAgenda.json", gr);
         try {
             TripAgenda readTa = reader.read();
             List<Trip> readAgenda = readTa.getTrips();
@@ -137,17 +137,18 @@ public class JsonTripAgendaReaderTest extends JsonTests {
 
     private void initMembers() {
         m1 = new Member("Shravan");
+        m1.addToMyGear("boots");
         m2 = new Member("Kumar");
         m3 = new Member("A");
-        trip1.addToCommitted(m1, gr);
+        m1.registerCommitted(trip1, gr);
         trip1.addToGoing(m1);
-        trip1.addToCommitted(m2, gr);
-        trip1.addToInterested(m3);
-        trip2.addToInterested(m2);
-        trip2.addToCommitted(m3, gr);
-        trip2.addToInterested(m1);
-        trip3.addToInterested(m3);
-        trip3.addToCommitted(m2, gr);
+        m2.registerCommitted(trip1, gr);
+        m3.registerInterested(trip1);
+        m2.registerInterested(trip2);
+        m3.registerCommitted(trip2, gr);
+        m1.registerInterested(trip2);
+        m3.registerInterested(trip3);
+        m2.registerCommitted(trip3, gr);
         
 
     }
