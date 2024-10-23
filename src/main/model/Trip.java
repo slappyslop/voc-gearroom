@@ -1,7 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 //Represents a club trip, with name, access to a pool of gear,
 // members who are going, committed, and interested, a start and end date,
@@ -137,6 +141,33 @@ public class Trip {
 
     public List<String> getGearList() {
         return gearList;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("startDate", startDate);
+        json.put("endDate", endDate);
+        JSONArray gearListArray = new JSONArray();
+        for (String gear : gearList) {
+            gearListArray.put(gear);
+        }
+        json.put("gearList", gearListArray);
+        json.put("going", memberListToJsonArray(going));
+        json.put("committed", memberListToJsonArray(committed));
+        json.put("interested", memberListToJsonArray(interested));
+
+        return json;
+    }
+
+    private JSONArray memberListToJsonArray(List<Member> memberList) {
+        JSONArray jsonArray = new JSONArray();
+        for (Member m : memberList) {
+            jsonArray.put(m.toJson());
+        }
+
+        return jsonArray;
+
     }
 
 }

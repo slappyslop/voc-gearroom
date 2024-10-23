@@ -4,6 +4,7 @@ import java.io.*;
 
 
 public abstract class JsonWriter {
+    protected static final int TAB = 4;
     protected String destination;
     protected PrintWriter writer;
 

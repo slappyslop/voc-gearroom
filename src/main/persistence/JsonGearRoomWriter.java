@@ -6,10 +6,8 @@ import org.json.JSONObject;
 /*Taken from JSONSERIALIZATIONDEMO 
  * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 */
-
 // Represents a writer that writes JSON representation of GearRoom to file
 public class JsonGearRoomWriter extends JsonWriter {
-    private static final int TAB = 4;
     
     public JsonGearRoomWriter(String destination){
         super(destination);

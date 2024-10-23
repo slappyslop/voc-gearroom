@@ -1,7 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 //Represents a club member having name, names of gear they already own, and a log of trips they have interacted with
 public class Member {
@@ -50,6 +54,17 @@ public class Member {
 
     public String getLogInState() {
         return logInState;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        JSONArray myGearArray = new JSONArray();
+        for (String string : myGear) {
+            myGearArray.put(string);
+        }
+        json.put("myGear", myGearArray);
+        return json;
     }
 
 
