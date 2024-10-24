@@ -15,7 +15,7 @@ import model.GearRoom;
  * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 */
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads gearroom from JSON data stored in file
 public class JsonGearRoomReader {
     private String source;
 
@@ -51,7 +51,7 @@ public class JsonGearRoomReader {
     }
 
     // MODIFIES: gr
-    // EFFECTS: parses gears from JSON object and adds them to workroom
+    // EFFECTS: parses gears from JSON object and adds them to gearroom
     private void addGears(GearRoom gr, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("gearRoom");
         for (Object json : jsonArray) {
@@ -61,7 +61,7 @@ public class JsonGearRoomReader {
     }
 
     // MODIFIES: gr
-    // EFFECTS: parses gear from JSON object and adds it to workroom
+    // EFFECTS: parses gear from JSON object and adds it to gearroom
     private void addGear(GearRoom gr, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Gear g = new Gear(name);

@@ -8,6 +8,7 @@ public abstract class JsonWriter {
     protected String destination;
     protected PrintWriter writer;
 
+    // EFFECTS: constructs abstract writer to write to destination file
     public JsonWriter(String destination){
         this.destination = destination;
     }

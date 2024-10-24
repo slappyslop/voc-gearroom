@@ -1,19 +1,21 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import persistence.Writable;
+
 //Represents a club member having name, names of gear they already own, and a log of trips they have interacted with
-public class Member {
+public class Member implements Writable {
     private List<String> myGear; //a list of names of gear the member owns
     private String name; // name of the member
     private String logInState;
 
-    //Requires: name is unique
+    //REQUIRES: Name is unique
+    //EFFECTS: Creates a member with a name and no gear
     public Member(String name) {
         this.name = name;
         myGear = new ArrayList<String>();

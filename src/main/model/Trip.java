@@ -1,16 +1,17 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import persistence.Writable;
+
 //Represents a club trip, with name, access to a pool of gear,
 // members who are going, committed, and interested, a start and end date,
 // and a list of names of required gear
-public class Trip {
+public class Trip implements Writable {
 
     private String name;
     private List<Member> going; // list of members going on trip
@@ -21,6 +22,7 @@ public class Trip {
     private List<String> gearList; // list of gear required for trip per person
 
     // REQUIRES: gearList must not contain duplicates
+    //EFFECTS: constructs a Trip with a gearList, and no signed on members
     public Trip(List<String> gearList) {
         going = new ArrayList<Member>();
         committed = new ArrayList<Member>();

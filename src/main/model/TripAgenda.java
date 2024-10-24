@@ -1,18 +1,18 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import org.json.JSONObject;
+
+import persistence.Writable;
+
 import org.json.JSONArray;
 
-import org.json.JSONObject;
-
 //Represents the trip agenda, a list of club trips
-public class TripAgenda {
+public class TripAgenda implements Writable{
     private List<Trip> agenda;
 
-    //EFFECTS: Creates a TripAgenda
+    //EFFECTS: Creates a TripAgenda with no trips posted
     public TripAgenda() {
         this.agenda = new ArrayList<>();
     }

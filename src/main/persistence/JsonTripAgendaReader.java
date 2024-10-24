@@ -72,7 +72,7 @@ public class JsonTripAgendaReader {
         String name = jsonObject.getString("name");
         int startDate = jsonObject.getInt("startDate");
         int endDate = jsonObject.getInt("endDate");
-        List<String> gearList = new ArrayList();
+        List<String> gearList = new ArrayList<String>();
         JSONArray goingArray = jsonObject.getJSONArray("going");
         JSONArray committedArray = jsonObject.getJSONArray("committed");
         JSONArray interestedArray = jsonObject.getJSONArray("interested");
@@ -95,7 +95,6 @@ public class JsonTripAgendaReader {
     }
 
     private void addInterestedMembers(Trip t, JSONArray interestedArray) {
-        List<Member> interested = new ArrayList<>();
         for (Object json : interestedArray) {
             JSONObject member = (JSONObject) json;
             Member m = createAMember(member);

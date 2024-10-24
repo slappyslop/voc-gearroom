@@ -9,7 +9,7 @@ import model.TripAgenda;
 */
 public class JsonTripAgendaWriter extends JsonWriter {
 
-    //EFFECTS: creates an instance of JSONTripAgendaWriter
+    // EFFECTS: constructs writer to write a TripAgenda to destination file
     JsonTripAgendaWriter(String destination) {
         super(destination);
 

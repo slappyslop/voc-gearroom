@@ -13,6 +13,7 @@ public class Gear implements Writable{
     private String name; //name of the gear
     private List<Integer> reservations; //days the gear has been reserved
 
+    //EFFECTS: constructs a new piece of gear with name and no reservations
     public Gear(String name) {
         this.name = name;
         this.reservations = new ArrayList<Integer>();

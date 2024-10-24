@@ -11,6 +11,7 @@ import persistence.Writable;
 public class GearRoom implements Writable {
     private List<Gear> gearRoom;
 
+    //EFFECTS: constructs a GearRoom with a list of gear
     public GearRoom() {
         this.gearRoom = new ArrayList<>();
     }
