@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.junit.jupiter.api.Test;
 
 import model.Gear;
@@ -15,6 +14,7 @@ import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
+
 /*
  * Taken from JSONSERIALIZATIONDEMO
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
@@ -40,13 +40,13 @@ public class JsonTripAgendaWriterTest extends JsonTests {
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {
-            //pass
+            // pass
         }
     }
 
     @Test
     void testWriterEmptyTripAgenda() {
-         try {
+        try {
             TripAgenda testEmptyTa = new TripAgenda();
             JsonTripAgendaWriter writer = new JsonTripAgendaWriter("./data/testWriterEmptyTripAgenda.json");
             writer.open();
@@ -63,8 +63,8 @@ public class JsonTripAgendaWriterTest extends JsonTests {
     }
 
     @Test
-    void testWriterGeneralTripAgenda(){
-        try{
+    void testWriterGeneralTripAgenda() {
+        try {
             initializeTripAgenda();
             JsonTripAgendaWriter writer = new JsonTripAgendaWriter("./data/testWriterGeneralTripAgenda.json");
             writer.open();
@@ -105,7 +105,7 @@ public class JsonTripAgendaWriterTest extends JsonTests {
         initMembers();
 
     }
-    
+
     private void initTrips() {
         trip1 = new Trip(glski);
         trip1.setName("Backcountry skiing at Elfin Lakes");
@@ -141,7 +141,6 @@ public class JsonTripAgendaWriterTest extends JsonTests {
         m1.registerInterested(trip2);
         m3.registerInterested(trip3);
         m2.registerCommitted(trip3, gr);
-        
 
     }
 
@@ -164,11 +163,5 @@ public class JsonTripAgendaWriterTest extends JsonTests {
         gr.addGear(new Gear("poles"));
         gr.addGear(new Gear("poles"));
     }
-
-
-    
-
-    
-    
 
 }

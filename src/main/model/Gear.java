@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 //Represents a piece of club gear, having a name and a set of reserved dates
-public class Gear implements Writable{
+public class Gear implements Writable {
 
     private String name; //name of the gear
     private List<Integer> reservations; //days the gear has been reserved
@@ -55,7 +55,7 @@ public class Gear implements Writable{
         json.put("reservations", intsToJson());
         return json;
     } 
-    
+
     // EFFECTS: returns reservations of this gear as a JSON array
     private JSONArray intsToJson() {
         JSONArray jsonArray = new JSONArray();

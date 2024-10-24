@@ -16,9 +16,8 @@ public class TestTripAgenda {
     GearRoom gr;
     List<String> gl;
 
-
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         gr = new GearRoom();
         testAgenda = new TripAgenda();
         gl = new ArrayList<String>();
@@ -27,22 +26,22 @@ public class TestTripAgenda {
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         assertEquals(testAgenda.getTrips().size(), 0);
     }
 
     @Test
-    void testAddTrip(){
+    void testAddTrip() {
         List<Trip> tripList = testAgenda.getTrips();
         assertEquals(0, tripList.size());
         testAgenda.addTrip(trip1);
         assertEquals(1, tripList.size());
         assertEquals(trip1, tripList.get(0));
-        
 
     }
+
     @Test
-    void testAddMultipleTrips(){
+    void testAddMultipleTrips() {
         List<Trip> tripList = testAgenda.getTrips();
         assertEquals(0, tripList.size());
         testAgenda.addTrip(trip1);
@@ -52,6 +51,6 @@ public class TestTripAgenda {
         assertEquals(2, tripList.size());
         assertEquals(trip1, tripList.get(0));
         assertEquals(trip2, tripList.get(1));
-        
+
     }
 }

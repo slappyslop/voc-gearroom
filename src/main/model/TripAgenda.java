@@ -9,7 +9,7 @@ import persistence.Writable;
 import org.json.JSONArray;
 
 //Represents the trip agenda, a list of club trips
-public class TripAgenda implements Writable{
+public class TripAgenda implements Writable {
     private List<Trip> agenda;
 
     //EFFECTS: Creates a TripAgenda with no trips posted
@@ -39,7 +39,7 @@ public class TripAgenda implements Writable{
     private JSONArray agendaToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for(Trip t : agenda) {
+        for (Trip t : agenda) {
             jsonArray.put(t.toJson());
         }
         return jsonArray;

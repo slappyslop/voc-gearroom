@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import model.GearRoom;
 import model.Gear;
 
-
 import static org.junit.jupiter.api.Assertions.*;
+
 /*
  * Taken from JSONSERIALIZATIONDEMO
  *  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
@@ -23,13 +23,14 @@ class JsonGearRoomWriterTest extends JsonTests {
     private Gear g2;
 
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         gr = new GearRoom();
         g1 = new Gear("shoes");
         g2 = new Gear("pants");
         g1.reserve(1, 3);
         g1.reserve(5, 5);
     }
+
     @Test
     void testWriterInvalidFile() {
         try {
@@ -60,7 +61,7 @@ class JsonGearRoomWriterTest extends JsonTests {
     @Test
     void testWriterGeneralGearRoom() {
         try {
-            
+
             gr.addGear(g1);
             gr.addGear(g2);
             JsonGearRoomWriter writer = new JsonGearRoomWriter("./data/testWriterGeneralGearRoom.json");

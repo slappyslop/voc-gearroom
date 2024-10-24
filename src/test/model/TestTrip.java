@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TestTrip {
     Trip testTrip;
     Member m1;
@@ -30,7 +29,7 @@ public class TestTrip {
 
     @BeforeEach
 
-    void runBefore(){
+    void runBefore() {
         testgr = new GearRoom();
         gl = new ArrayList<String>();
         testTrip = new Trip(gl);
@@ -45,23 +44,23 @@ public class TestTrip {
         interested = testTrip.getInterested();
         committed = testTrip.getCommitted();
 
-
-
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         assertTrue(going.isEmpty());
         assertTrue(committed.isEmpty());
         assertTrue(interested.isEmpty());
         assertEquals(gl, testTrip.getGearList());
     }
+
     @Test
     void testAddToInterested() {
         testTrip.addToInterested(m1);
         assertEquals(1, interested.size());
-        assertEquals(m1, interested.get((0))); 
+        assertEquals(m1, interested.get((0)));
     }
+
     @Test
     void testAddMultipleInterested() {
         testTrip.addToInterested(m1);
@@ -76,16 +75,16 @@ public class TestTrip {
         testTrip.addToInterested(m1);
         testTrip.addToCommitted(m1, testgr);
         assertEquals(1, committed.size());
-        assertEquals(m1, committed.get((0))); 
-        assertFalse(interested.contains(m1)); 
+        assertEquals(m1, committed.get((0)));
+        assertFalse(interested.contains(m1));
     }
 
-     @Test
-      void testAddToCommittedOnly() {
+    @Test
+    void testAddToCommittedOnly() {
         testTrip.addToCommitted(m1, testgr);
         assertEquals(1, committed.size());
-        assertEquals(m1, committed.get((0))); 
-        assertFalse(interested.contains(m1)); 
+        assertEquals(m1, committed.get((0)));
+        assertFalse(interested.contains(m1));
     }
 
     @Test
@@ -111,16 +110,17 @@ public class TestTrip {
         assertFalse(interested.contains(m1));
         assertFalse(interested.contains(m2));
     }
-    
-    @Test 
-    void testAddToGoing(){
+
+    @Test
+    void testAddToGoing() {
         testTrip.addToCommitted(m1, testgr);
         testTrip.addToGoing(m1);
         assertEquals(1, going.size());
         assertEquals(m1, going.get((0)));
         assertFalse(committed.contains(m1));
     }
-    @Test 
+
+    @Test
     void testAddMultipleGoing() {
         testTrip.addToInterested(m3);
         testTrip.addToInterested(m4);
@@ -141,48 +141,45 @@ public class TestTrip {
         assertFalse(interested.contains(m4));
     }
 
-    
-
     @Test
     void testGetMemberRequiredGearAll() {
-      gl.add("skis");
-      gl.add("boots");
-      gl.add("jacket");
-      List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
-      assertEquals(3, requiredGear.size());
-      assertEquals("skis", requiredGear.get(0));
-      assertEquals("boots", requiredGear.get(1));
-      assertEquals("jacket", requiredGear.get(2));
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
+        assertEquals(3, requiredGear.size());
+        assertEquals("skis", requiredGear.get(0));
+        assertEquals("boots", requiredGear.get(1));
+        assertEquals("jacket", requiredGear.get(2));
 
     }
 
     @Test
     void testGetMemberRequiredGearSome() {
-      gl.add("skis");
-      gl.add("boots");
-      gl.add("jacket");
-      m1.addToMyGear("skis");
-      m1.addToMyGear("boots");
-      m1.addToMyGear("climbing shoes");
-      List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
-      assertEquals(1, requiredGear.size());
-      assertEquals("jacket", requiredGear.get(0));
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        m1.addToMyGear("skis");
+        m1.addToMyGear("boots");
+        m1.addToMyGear("climbing shoes");
+        List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
+        assertEquals(1, requiredGear.size());
+        assertEquals("jacket", requiredGear.get(0));
     }
 
     @Test
     void testGetMemberRequiredGearNone() {
-      gl.add("skis");
-      gl.add("boots");
-      gl.add("jacket");
-      m1.addToMyGear("skis");
-      m1.addToMyGear("boots");
-      m1.addToMyGear("climbing shoes");
-      m1.addToMyGear("jacket");
-      List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
-      assertTrue(requiredGear.isEmpty());
-      
-    }
+        gl.add("skis");
+        gl.add("boots");
+        gl.add("jacket");
+        m1.addToMyGear("skis");
+        m1.addToMyGear("boots");
+        m1.addToMyGear("climbing shoes");
+        m1.addToMyGear("jacket");
+        List<String> requiredGear = testTrip.getMemberRequiredGear(m1);
+        assertTrue(requiredGear.isEmpty());
 
+    }
 
     @Test
     void testCheckEnoughGear() {
@@ -198,8 +195,9 @@ public class TestTrip {
 
         assertTrue(testTrip.checkEnoughGear(m1, testgr).isEmpty());
         assertEquals(gl, testTrip.checkEnoughGear(m2, testgr));
-        
+
     }
+
     @Test
     void testCheckEnoughGearAllAndNone() {
         gl.add("skis");
@@ -218,8 +216,9 @@ public class TestTrip {
 
         assertTrue(testTrip.checkEnoughGear(m1, testgr).isEmpty());
         assertTrue(testTrip.checkEnoughGear(m2, testgr).isEmpty());
-        
+
     }
+
     @Test
     void testCheckEnoughGearPassSomeAndSome() {
         gl.add("skis");
@@ -238,7 +237,7 @@ public class TestTrip {
 
         assertTrue(testTrip.checkEnoughGear(m1, testgr).isEmpty());
         assertTrue(testTrip.checkEnoughGear(m2, testgr).isEmpty());
-        
+
     }
 
     @Test
@@ -258,7 +257,6 @@ public class TestTrip {
         expectedm2.add("jacket");
         assertEquals(expectedm1, testTrip.checkEnoughGear(m1, testgr));
         assertEquals(expectedm2, testTrip.checkEnoughGear(m2, testgr));
-        
 
     }
 
@@ -271,10 +269,9 @@ public class TestTrip {
     }
 
     @Test
-    void testNames(){
+    void testNames() {
         testTrip.setName("Trip to Garibaldi Park");
         assertEquals("Trip to Garibaldi Park", testTrip.getName());
     }
 
-    
 }

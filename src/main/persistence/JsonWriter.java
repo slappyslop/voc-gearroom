@@ -1,4 +1,5 @@
 package persistence;
+
 import java.io.*;
 
 
@@ -9,7 +10,7 @@ public abstract class JsonWriter {
     protected PrintWriter writer;
 
     // EFFECTS: constructs abstract writer to write to destination file
-    public JsonWriter(String destination){
+    public JsonWriter(String destination) {
         this.destination = destination;
     }
 

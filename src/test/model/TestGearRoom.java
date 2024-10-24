@@ -1,4 +1,5 @@
 package model;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,7 +15,7 @@ public class TestGearRoom {
     List<Gear> gr;
 
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         testGearRoom = new GearRoom();
         g1 = new Gear("A");
         g2 = new Gear("B");
@@ -22,16 +23,17 @@ public class TestGearRoom {
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         assertTrue(gr.isEmpty());
     }
 
     @Test
-    void testAddGear(){
+    void testAddGear() {
         testGearRoom.addGear(g1);
         assertEquals(1, gr.size());
         assertEquals(g1, gr.get((0)));
     }
+
     @Test
     void testAddMultipleGear() {
         testGearRoom.addGear(g1);
@@ -40,9 +42,5 @@ public class TestGearRoom {
         assertEquals(g1, gr.get(0));
         assertEquals(g2, gr.get(1));
     }
-
-
-    
-
 
 }

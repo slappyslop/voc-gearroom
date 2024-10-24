@@ -1,4 +1,5 @@
 package persistence;
+
 import model.GearRoom;
 import org.json.JSONObject;
 
@@ -10,7 +11,7 @@ import org.json.JSONObject;
 public class JsonGearRoomWriter extends JsonWriter {
     
     // constructs writer to write a gear rom to destination file 
-    public JsonGearRoomWriter(String destination){
+    public JsonGearRoomWriter(String destination) {
         super(destination);
     }
 
