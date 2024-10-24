@@ -8,11 +8,12 @@ import org.json.JSONObject;
 
 import persistence.Writable;
 
-//Represents a club member having name, names of gear they already own, and a log of trips they have interacted with
+//Represents a club member having name, names of gear they already own,log of trips they have interacted with
+// and log in state
 public class Member implements Writable {
     private List<String> myGear; //a list of names of gear the member owns
     private String name; // name of the member
-    private String logInState;
+    private String logInState; // whether the member is currently logged in
 
     //REQUIRES: Name is unique
     //EFFECTS: Creates a member with a name and no gear
@@ -58,6 +59,7 @@ public class Member implements Writable {
         return logInState;
     }
 
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

@@ -55,7 +55,8 @@ public class Gear implements Writable{
         json.put("reservations", intsToJson());
         return json;
     } 
-
+    
+    // EFFECTS: returns reservations of this gear as a JSON array
     private JSONArray intsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (int i : reservations) {

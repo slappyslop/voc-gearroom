@@ -13,7 +13,7 @@ import persistence.Writable;
 // and a list of names of required gear
 public class Trip implements Writable {
 
-    private String name;
+    private String name; // name of the trip
     private List<Member> going; // list of members going on trip
     private List<Member> committed; // list of members committed to trip
     private List<Member> interested; // list of members interested in trip
@@ -64,6 +64,8 @@ public class Trip implements Writable {
         interested.add(m);
     }
 
+    //EFFECTS: Checks if getMemberRequiredGear(m) is available to rent in the clubroom
+    // on day of trip, returns unrentable gear
     public List<String> checkEnoughGear(Member m, GearRoom gr) {
         List<String> requiredGear = getMemberRequiredGear(m);
         for (Gear g : gr.getGearRoom()) {
@@ -145,6 +147,7 @@ public class Trip implements Writable {
         return gearList;
     }
 
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
@@ -162,6 +165,7 @@ public class Trip implements Writable {
         return json;
     }
 
+    // EFFECTS: returns members in memberList as a JSON array
     private JSONArray memberListToJsonArray(List<Member> memberList) {
         JSONArray jsonArray = new JSONArray();
         for (Member m : memberList) {

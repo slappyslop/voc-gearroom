@@ -9,6 +9,7 @@ import org.json.JSONObject;
 // Represents a writer that writes JSON representation of GearRoom to file
 public class JsonGearRoomWriter extends JsonWriter {
     
+    // constructs writer to write a gear rom to destination file 
     public JsonGearRoomWriter(String destination){
         super(destination);
     }

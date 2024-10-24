@@ -5,7 +5,10 @@ import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
-import persistence.*;
+import persistence.JsonGearRoomReader;
+import persistence.JsonGearRoomWriter;
+import persistence.JsonTripAgendaReader;
+import persistence.JsonTripAgendaWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,7 +28,8 @@ import java.util.Scanner;
  * 
  */
 public class TripApp {
-    private static final String JSON_STORE = "./data/gearroom.json";
+    private static final String GEARROOM_JSON_STORE = "./data/gearroom.json";
+    private static final String TRIPAGENDA_JSON_STORE = "./data/tripagenda.json";
     private Scanner input;
     private TripAgenda tripAgenda;
     private GearRoom gearRoom;
@@ -33,9 +37,12 @@ public class TripApp {
     private List<String> glski;
     private List<String> glcamp;
     private List<String> glhike;
-    private JsonGearRoomWriter jsonWriter;
-    private JsonGearRoomReader jsonReader;
+    private JsonGearRoomWriter jsonGearRoomWriter;
+    private JsonGearRoomReader jsonGearRoomReader;
+    private JsonTripAgendaReader jsonTripAgendaReader;
+    private JsonTripAgendaWriter jsonTripAgendaWriter;
 
+    //EFFECTS: Creates an instance of the UI
     public TripApp() {
         glski = new ArrayList<>();
         glcamp = new ArrayList<>();
@@ -87,12 +94,23 @@ public class TripApp {
         System.out.println("Would you like to:");
         System.out.println("\tc -> create a trip");
         System.out.println("\tv -> view a list of trips");
+        System.out.println("\ts -> save the current list of trips");
+        System.out.println("\tl -> load list of trips from file");
+        System.out.println("\tq -> log out");
 
         command = input.nextLine();
         if (command.equals("c")) {
             createATrip();
         } else if (command.equals("v")) {
             viewTrips();
+        } else if (command.equals("s")) {
+            saveTripAgenda();
+            mainMenuLeader();
+        } else if (command.equals("l")) {
+            loadTripAgenda();
+            mainMenuLeader();
+        } else if (command.equals("q")) {
+            return;
         }
     }
 
@@ -103,13 +121,43 @@ public class TripApp {
         System.out.println("\nWelcome Club Member " + currentMember.getName() + "!");
         System.out.println("Would you like to:");
         System.out.println("\tv -> view a list of trips");
+        System.out.println("\ts -> save the current list of trips");
+        System.out.println("\tl -> load list of trips from file");
         System.out.println("\tq -> log out ");
         command = input.nextLine().toLowerCase();
         if (command.equals("v")) {
             viewTrips();
         } else if (command.equals("q")) {
             return;
+        } else if (command.equals("s")) {
+            saveTripAgenda();
+            mainMenuMember();
+        } else if (command.equals("l")) {
+            loadTripAgenda();
+            mainMenuMember();
+        } else if (command.equals("q")) {
+            return;
         }
+    }
+
+    private void loadTripAgenda() {
+        try {
+            tripAgenda =  jsonTripAgendaReader.read();
+            System.out.println("\nLoaded list of trips from " + TRIPAGENDA_JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("\nUnable to load list of trips from " + TRIPAGENDA_JSON_STORE);
+        }     
+    }
+
+    private void saveTripAgenda() {
+       try {
+        jsonTripAgendaWriter.open();
+           jsonTripAgendaWriter.write(tripAgenda);
+           jsonTripAgendaWriter.close();
+           System.out.println("\nSaved list of trips to " + TRIPAGENDA_JSON_STORE);
+    } catch (FileNotFoundException e) {
+       System.out.println("\nUnable to save list of trips to " + TRIPAGENDA_JSON_STORE);
+    }
     }
 
     //EFFECTS: Redirects gearmasters to the addgear screen
@@ -138,22 +186,22 @@ public class TripApp {
 
     private void loadGearRoom() {
         try {
-            gearRoom = jsonReader.read();
-            System.out.println("Loaded GearRoom from " + JSON_STORE);
+            gearRoom = jsonGearRoomReader.read();
+            System.out.println("Loaded GearRoom from " + GEARROOM_JSON_STORE);
         } catch (IOException e) {
-            System.out.println("Unable to read from " + JSON_STORE);
+            System.out.println("Unable to read from " + GEARROOM_JSON_STORE);
         }
         displayMainMenuGearMaster();
     }
 
     private void saveGearRoom() {
         try {
-            jsonWriter.open();
-            jsonWriter.write(gearRoom);
-            jsonWriter.close();
-            System.out.println("Saved Gear Room to " + JSON_STORE);
+            jsonGearRoomWriter.open();
+            jsonGearRoomWriter.write(gearRoom);
+            jsonGearRoomWriter.close();
+            System.out.println("Saved Gear Room to " + GEARROOM_JSON_STORE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to save Gear Room to " + JSON_STORE);
+            System.out.println("Unable to save Gear Room to " + GEARROOM_JSON_STORE);
         }
         displayMainMenuGearMaster();
     }
@@ -258,11 +306,15 @@ public class TripApp {
                     + t.getEndDate());
         }
         System.out
-                .println("If you would like to view a trip in detail, type its entry number now. (press 0 to log out)");
+                .println("If you would like to view a trip in detail, type its entry number now. (press 0 to go back)");
         int command = input.nextInt();
         input.nextLine();
         if (command == 0) {
-            return;
+            if (currentMember.getLogInState().equals("leader")) {
+                mainMenuLeader();
+            } else {
+                mainMenuMember();
+            }
         } else {
             viewTrip(command);
         }
@@ -393,8 +445,10 @@ public class TripApp {
         input = new Scanner(System.in);
         tripAgenda = new TripAgenda();
         gearRoom = new GearRoom();
-        jsonWriter = new JsonGearRoomWriter(JSON_STORE);
-        jsonReader = new JsonGearRoomReader(JSON_STORE);
+        jsonGearRoomWriter = new JsonGearRoomWriter(GEARROOM_JSON_STORE);
+        jsonGearRoomReader = new JsonGearRoomReader(GEARROOM_JSON_STORE);
+        jsonTripAgendaWriter = new JsonTripAgendaWriter(TRIPAGENDA_JSON_STORE);
+        jsonTripAgendaReader = new JsonTripAgendaReader(TRIPAGENDA_JSON_STORE, gearRoom);
         glski.add("skis");
         glski.add("jacket");
         glski.add("boots");

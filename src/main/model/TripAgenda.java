@@ -28,12 +28,14 @@ public class TripAgenda implements Writable{
         return agenda;
     }
 
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("agenda", agendaToJson());
         return json;
     }
 
+    // EFFECTS: returns trips in this trip agenda as a JSON array
     private JSONArray agendaToJson() {
         JSONArray jsonArray = new JSONArray();
 

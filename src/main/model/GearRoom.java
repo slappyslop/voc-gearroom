@@ -35,6 +35,7 @@ public class GearRoom implements Writable {
         return json;
     }
 
+    // EFFECTS: returns gear in this gear room as a JSON array
     private JSONArray gearRoomtoJson() {
         JSONArray jsonArray = new JSONArray();
 
