@@ -9,7 +9,9 @@ import model.Member;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+/*
+ * Main GUI class that handles the GUI
+ */
 public class GUI {
     private int FRAME_HEIGHT = 200;
     private int FRAME_WIDTH = 500;
@@ -21,6 +23,7 @@ public class GUI {
     private CardLayout crd;
     private Member currentMember;
 
+    //EFFECTS: creates a GUI that manages all the panels
     public GUI() {
         crd = new CardLayout();
         frame = new JFrame();
@@ -40,6 +43,8 @@ public class GUI {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: logs a user into the app and displays the next screen according to their role
     public void logIn(String role, String userName) {
         currentMember = new Member(userName);
         currentMember.setLogInState(role);
@@ -55,6 +60,7 @@ public class GUI {
         
     }
 
+    // EFFECTS: runs the gui
     public static void main(String[] args) {
         new GUI();
     }

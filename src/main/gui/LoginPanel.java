@@ -32,6 +32,7 @@ public class LoginPanel extends JPanel {
     private GridBagConstraints gbc;
     private JTextField userField;
 
+    //EFFECTS: displays the login Screen
     public LoginPanel (GUI gui) {
         this.gui = gui;
         gbl = new GridBagLayout();
@@ -50,7 +51,8 @@ public class LoginPanel extends JPanel {
 
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: Creates the username field
     private JTextField makeNameField() {
         nameField = new JTextField(20);
         gbc.gridx = 100;
@@ -64,6 +66,8 @@ public class LoginPanel extends JPanel {
     }
 
 
+    //MODIFIES: this
+    //EFFECTS: Creates a button with name and x position
     private JButton makeButton(String name, int x) {
         JButton button = new JButton(name);
         gbc.gridx = x;
@@ -76,6 +80,8 @@ public class LoginPanel extends JPanel {
         return button;
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates a label with name and y position
     private void makeLabel(String name, int y) {
         JLabel label = new JLabel(name);
         gbc.gridx = LABEL_X;
@@ -87,6 +93,7 @@ public class LoginPanel extends JPanel {
         add(label);
     }
 
+    //Handles gear master button click
     private class GearMasterListener implements ActionListener{
 
         @Override
@@ -100,6 +107,7 @@ public class LoginPanel extends JPanel {
 
     }
 
+    //Handles leader button click
     private class LeaderListener implements ActionListener {
 
         @Override
@@ -112,6 +120,7 @@ public class LoginPanel extends JPanel {
 
     }
 
+    //Handles member button click
     private class MemberListener implements ActionListener {
 
         @Override
