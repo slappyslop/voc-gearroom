@@ -5,8 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -26,7 +24,7 @@ import persistence.JsonGearRoomWriter;
  */
 public class GearPanel extends JPanel {
     private static final int LABEL_WIDTH = 3;
-    private static final String GEARROOM_JSON_STORE = "./data/testReaderGeneralGearRoom.json";
+    private static final String GEARROOM_JSON_STORE = "./data/gearRoom.json";
     private GUI gui;
     private Member currentMember;
     private GearRoom gearRoom;
