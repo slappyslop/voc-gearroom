@@ -63,7 +63,9 @@ public class GUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: Logs out of the program resetting everything
     public void logOut() {
+       this.dispose();
        new GUI();
+
     }
 
 }
