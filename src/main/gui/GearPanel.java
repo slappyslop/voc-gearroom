@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.DefaultListModel;
@@ -24,7 +25,7 @@ import persistence.JsonGearRoomWriter;
  */
 public class GearPanel extends JPanel {
     private static final int LABEL_WIDTH = 3;
-    private static final String GEARROOM_JSON_STORE = "./data/gearRoom.json";
+    private static final String GEARROOM_JSON_STORE = "./data/gearroom.json";
     private GUI gui;
     private Member currentMember;
     private GearRoom gearRoom;
@@ -33,6 +34,7 @@ public class GearPanel extends JPanel {
     private JButton saveGearRoom;
     private JButton loadGearRoom;
     private JButton logOut;
+    private JButton removeSelected;
     private JLabel messageLabel;
     private GridBagLayout gbl;
     private GridBagConstraints gbc;
@@ -48,6 +50,7 @@ public class GearPanel extends JPanel {
         gearRoom = new GearRoom();
         gbl = new GridBagLayout();
         gbc = new GridBagConstraints();
+        jsonGearRoomWriter = new JsonGearRoomWriter(GEARROOM_JSON_STORE);
         gearNames = new DefaultListModel<String>();
         setLayout(gbl);
         makeLabel("Welcome Gear Master " + m.getName() + "!", 0, 0);
@@ -76,11 +79,13 @@ public class GearPanel extends JPanel {
        loadGearRoom = makeButton("Load Gear Room", 0, 1);
        saveGearRoom = makeButton("Save Gear Room", 1, 1);
        addGear = makeButton("Add Gear", 2, 1);
-       logOut = makeButton("Log out", 3, 1);
+       removeSelected = makeButton("Remove selected", 3, 1);
+       logOut = makeButton("Log out", 4, 1);
        logOut.addActionListener(new LogOutListener());
        loadGearRoom.addActionListener(new LoadGearRoomListener());
        saveGearRoom.addActionListener(new SaveGearRoomListener());
        addGear.addActionListener(new AddGearListener());
+       removeSelected.addActionListener(new RemoveListener());
     }
 
     // MODIFIES: this
@@ -109,6 +114,7 @@ public class GearPanel extends JPanel {
     }
 
     private void updateGearModel() {
+        gearNames.clear();
         for (Gear gear : gearRoom.getGearRoom()) {
             gearNames.addElement(gear.getName());
         }
@@ -122,8 +128,9 @@ public class GearPanel extends JPanel {
             jsonGearRoomReader = new JsonGearRoomReader(GEARROOM_JSON_STORE);
             try {  
                 gearRoom = jsonGearRoomReader.read();
+                updateGearModel();
                 messageLabel.setText("Successfully read from" + GEARROOM_JSON_STORE + "!");
-                gearRoomDisplay = displayGearRoom();
+                
             } catch (IOException e1) {
                 messageLabel.setText("Unable to read from" + GEARROOM_JSON_STORE + "!");
                
@@ -144,7 +151,7 @@ public class GearPanel extends JPanel {
                 jsonGearRoomWriter.write(gearRoom);
                 jsonGearRoomWriter.close();
                 messageLabel.setText("Successfully wrote to" + GEARROOM_JSON_STORE + "!");
-            } catch (IOException e1) {
+            } catch (FileNotFoundException e1) {
                 messageLabel.setText("Unable to write to" + GEARROOM_JSON_STORE + "!");
                
             }
@@ -174,5 +181,16 @@ public class GearPanel extends JPanel {
             gui.logOut();
         }
 
+    }
+
+    private class RemoveListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int gearIndex = gearRoomDisplay.getSelectedIndex();
+            gearNames.remove(gearIndex);
+            gearRoom.getGearRoom().remove(gearIndex);
+        }
+        
     }
 }
