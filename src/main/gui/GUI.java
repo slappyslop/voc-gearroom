@@ -1,8 +1,7 @@
 package gui;
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import model.Member;
 
@@ -13,8 +12,8 @@ import javax.swing.JPanel;
  * Main GUI class that handles the GUI
  */
 public class GUI {
-    private int FRAME_HEIGHT = 200;
-    private int FRAME_WIDTH = 500;
+    private static int FRAME_HEIGHT = 200;
+    private static int FRAME_WIDTH = 500;
     private JFrame frame;
     private JPanel containerPanel;
     private LoginPanel login;
@@ -26,15 +25,11 @@ public class GUI {
     //EFFECTS: creates a GUI that manages all the panels
     public GUI() {
         crd = new CardLayout();
-        frame = new JFrame();
+        frame = new JFrame("Trip App");
         containerPanel = new JPanel(crd);
-        gearPanel = new GearPanel();
-        agendaPanel = new AgendaPanel();
         login = new LoginPanel(this);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        containerPanel.add(gearPanel, "gear");
-        containerPanel.add(agendaPanel, "agenda");
         containerPanel.add(login, "login");
         frame.add(containerPanel);
         crd.show(containerPanel, "login");
@@ -50,10 +45,12 @@ public class GUI {
         currentMember.setLogInState(role);
 
         if (role.equals("gear master")) {
-            gearPanel.setCurrentMember(currentMember);
+            gearPanel = new GearPanel(currentMember, this);
+            containerPanel.add(gearPanel, "gear");
             crd.show(containerPanel, "gear");
         } else {
-            agendaPanel.setCurrentMember(currentMember);
+            agendaPanel = new AgendaPanel(currentMember, this);
+            containerPanel.add(agendaPanel, "agenda");
             crd.show(containerPanel, "agenda");
         }
         
@@ -63,6 +60,12 @@ public class GUI {
     // EFFECTS: runs the gui
     public static void main(String[] args) {
         new GUI();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Logs out of the program resetting everything
+    public void logOut() {
+       new GUI();
     }
 
 }
