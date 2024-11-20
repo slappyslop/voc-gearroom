@@ -11,10 +11,9 @@ import javax.swing.JPanel;
 /*
  * Main GUI class that handles the GUI
  */
-public class GUI {
+public class GUI extends JFrame {
     private static int FRAME_HEIGHT = 200;
     private static int FRAME_WIDTH = 500;
-    private JFrame frame;
     private JPanel containerPanel;
     private LoginPanel login;
     private GearPanel gearPanel;
@@ -24,17 +23,16 @@ public class GUI {
 
     //EFFECTS: creates a GUI that manages all the panels
     public GUI() {
+        super("Trip App");
         crd = new CardLayout();
-        frame = new JFrame("Trip App");
         containerPanel = new JPanel(crd);
         login = new LoginPanel(this);
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         containerPanel.add(login, "login");
-        frame.add(containerPanel);
+        add(containerPanel);
         crd.show(containerPanel, "login");
-
-        frame.setVisible(true);
+        setVisible(true);
 
     }
 
