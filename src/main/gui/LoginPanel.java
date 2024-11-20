@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +35,7 @@ public class LoginPanel extends JPanel {
         setLayout(gbl);
         makeLabel("Name", 1);
         makeLabel("Login as:", 2);
+        addImage();
         leader = makeButton("Leader", 2);
         gearMaster = makeButton("Gear Master", 3);
         member = makeButton("Member", 4);
@@ -43,6 +45,17 @@ public class LoginPanel extends JPanel {
         leader.addActionListener(new LeaderListener());
         member.addActionListener(new MemberListener());
 
+    }
+
+    private void addImage() {
+        ImageIcon logo = new ImageIcon("./data/vocLogo-highres-fb.png");
+        ImageIcon scaled_logo = new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        JLabel logoLabel = new JLabel(scaled_logo);
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(logoLabel, gbc);
     }
 
     // MODIFIES: this
