@@ -9,9 +9,12 @@ import model.Member;
  */
 public class AgendaPanel extends JPanel {
     private Member currentMember;
-
-    public AgendaPanel() {
-        currentMember = null;
+    private GUI gui;
+    
+    public AgendaPanel(Member m, GUI gui) {
+        this.gui = gui;
+        currentMember = m;
+        
     }
 
     public void setCurrentMember(Member currentMember) {
