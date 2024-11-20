@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import model.Gear;
 import model.GearRoom;
@@ -28,6 +30,7 @@ public class GearPanel extends JPanel {
     private GUI gui;
     private Member currentMember;
     private GearRoom gearRoom;
+    private DefaultListModel<String> gearNames;
     private JButton addGear;
     private JButton saveGearRoom;
     private JButton loadGearRoom;
@@ -37,6 +40,7 @@ public class GearPanel extends JPanel {
     private GridBagConstraints gbc;
     private JsonGearRoomReader jsonGearRoomReader;
     private JsonGearRoomWriter jsonGearRoomWriter;
+    private JList gearRoomDisplay;
 
     //REQUIRES: m != null
     //EFFECTS: Displays the gear view screen
@@ -46,10 +50,11 @@ public class GearPanel extends JPanel {
         gearRoom = new GearRoom();
         gbl = new GridBagLayout();
         gbc = new GridBagConstraints();
+        gearNames = new DefaultListModel<String>();
         setLayout(gbl);
         makeLabel("Welcome Gear Master " + m.getName() + "!", 0, 0);
         messageLabel = makeLabel(null, 3, 0);
-        displayGearRoom();
+        gearRoomDisplay = displayGearRoom();
         makeButtons();
 
     }
@@ -77,6 +82,7 @@ public class GearPanel extends JPanel {
        logOut.addActionListener(new LogOutListener());
        loadGearRoom.addActionListener(new LoadGearRoomListener());
        saveGearRoom.addActionListener(new SaveGearRoomListener());
+       addGear.addActionListener(new AddGearListener());
     }
 
     // MODIFIES: this
@@ -93,10 +99,9 @@ public class GearPanel extends JPanel {
 
     //EFFECTS: Displays a JList of gear names
     private JList displayGearRoom() {
-        String[] columnNames = {"Gear Name", "Reserved on"};
-        List<Gear> gears = gearRoom.getGearRoom();
-        List<String> gearNames = getGearNames(gears);
-        JList<String> list = new JList(gearNames.toArray());
+        JList<String> list = new JList();
+        updateGearModel();
+        list.setModel(gearNames);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 6;
@@ -105,12 +110,10 @@ public class GearPanel extends JPanel {
         
     }
 
-    private List<String> getGearNames(List<Gear> gears) {
-        List<String> gearNames = new ArrayList<>();
-        for (Gear gear : gears) {
-            gearNames.add(gear.getName());
+    private void updateGearModel() {
+        for (Gear gear : gearRoom.getGearRoom()) {
+            gearNames.addElement(gear.getName());
         }
-        return gearNames;
     }
 
 
@@ -122,7 +125,7 @@ public class GearPanel extends JPanel {
             try {  
                 gearRoom = jsonGearRoomReader.read();
                 messageLabel.setText("Successfully read from" + GEARROOM_JSON_STORE + "!");
-                displayGearRoom();
+                gearRoomDisplay = displayGearRoom();
             } catch (IOException e1) {
                 messageLabel.setText("Unable to read from" + GEARROOM_JSON_STORE + "!");
                
@@ -153,11 +156,13 @@ public class GearPanel extends JPanel {
 
     // Handles AddGear button click
     private class AddGearListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+            String name = JOptionPane.showInputDialog(gui, "Gear Name:", null);
+            Gear g = new Gear(name);
+            gearRoom.addGear(g);
+            gearNames.addElement(name);
+            
         }
 
     }
