@@ -44,11 +44,10 @@ public class GearPanel extends JPanel {
 
     //REQUIRES: m != null
     //EFFECTS: Displays the gear view screen
-    public GearPanel(Member m, GUI gui, GearRoom gr) {
-        this.gearRoom = gr;
+    public GearPanel(Member m, GUI gui) {
+        this.gearRoom = gui.getGearRoom();
         this.gui = gui;
         currentMember = m;
-        gearRoom = new GearRoom();
         gbl = new GridBagLayout();
         gbc = new GridBagConstraints();
         jsonGearRoomWriter = new JsonGearRoomWriter(GEARROOM_JSON_STORE);

@@ -460,8 +460,8 @@ public class TripApp {
         glcamp.add("sleeping bag");
         glcamp.add("jacket");
         glcamp.add("stove");
-        initTrips();
-        initGear();
+        // initTrips();
+        // initGear();
     }
 
     // MODIFIES: tripAgenda

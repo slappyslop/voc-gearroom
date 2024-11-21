@@ -26,6 +26,8 @@ public class GUI extends JFrame {
     private GearRoom gearRoom;
     private TripAgenda agenda;
 
+    
+
     //EFFECTS: creates a GUI that manages all the panels
     public GUI() {
         super("Trip App");
@@ -50,22 +52,26 @@ public class GUI extends JFrame {
         currentMember.setLogInState(role);
 
         if (role.equals("gear master")) {
-            gearPanel = new GearPanel(currentMember, this, gearRoom);
+            gearPanel = new GearPanel(currentMember, this);
             containerPanel.add(gearPanel, "gear");
             crd.show(containerPanel, "gear");
         } else {
-            agendaPanel = new AgendaPanel(currentMember, this, agenda, gearRoom);
+            agendaPanel = new AgendaPanel(currentMember, this);
             containerPanel.add(agendaPanel, "agenda");
-            crd.show(containerPanel, "agenda");
+            viewAgenda();
         }
         
         
     }
 
     public void viewTrip(Trip t) {
-        tripPanel = new TripPanel(t, this, gearRoom);
+        tripPanel = new TripPanel(t, this);
         containerPanel.add(tripPanel, "trip");
         crd.show(containerPanel, "trip");
+    }
+
+    public void viewAgenda() {
+        crd.show(containerPanel, "agenda");
     }
 
     // MODIFIES: this
@@ -74,6 +80,18 @@ public class GUI extends JFrame {
        this.dispose();
        new GUI();
 
+    }
+
+    public GearRoom getGearRoom() {
+        return gearRoom;
+    }
+
+    public TripAgenda getAgenda() {
+        return agenda;
+    }
+
+    public Member getCurrentMember() {
+        return currentMember;
     }
 
 }

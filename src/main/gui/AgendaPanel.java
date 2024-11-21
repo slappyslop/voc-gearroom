@@ -49,10 +49,10 @@ public class AgendaPanel extends JPanel {
     
     //REQUIRES: m != null
     //EFFECTS: Displays the agenda view screen
-    public AgendaPanel(Member m, GUI gui, TripAgenda agenda, GearRoom gr) {
-        this.gearRoom = gr;
+    public AgendaPanel(Member m, GUI gui) {
+        this.gearRoom = gui.getGearRoom();
+        this.agenda = gui.getAgenda();
         this.gui = gui;
-        this.agenda = agenda;
         currentMember = m;
         agenda = new TripAgenda();
         gbl = new GridBagLayout();
