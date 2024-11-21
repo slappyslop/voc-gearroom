@@ -6,9 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -17,13 +16,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
-import model.Gear;
+
 import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
-import persistence.JsonGearRoomReader;
-import persistence.JsonGearRoomWriter;
 import persistence.JsonTripAgendaReader;
 import persistence.JsonTripAgendaWriter;
 
@@ -142,6 +139,7 @@ public class AgendaPanel extends JPanel {
 
     }
 
+    // Handles loadTripAgenda button click
     private class LoadTripAgendaListener implements ActionListener { 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -160,6 +158,7 @@ public class AgendaPanel extends JPanel {
 
     }
 
+    // Handles saveTripAgenda button click
     private class SaveTripAgendaListener implements ActionListener {
 
         @Override
@@ -177,6 +176,7 @@ public class AgendaPanel extends JPanel {
         }
     }
 
+    // Handles AddTrip button click
     private class AddTripListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String name = JOptionPane.showInputDialog(gui, "Trip Name:", null);
@@ -195,6 +195,7 @@ public class AgendaPanel extends JPanel {
         }
     }
 
+    // Handles viewTrip button click
     private class ViewTripListener implements ActionListener {
 
         @Override

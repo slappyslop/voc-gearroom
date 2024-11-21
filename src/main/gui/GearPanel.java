@@ -54,7 +54,7 @@ public class GearPanel extends JPanel {
         jsonGearRoomWriter = new JsonGearRoomWriter(GEARROOM_JSON_STORE);
         gearNames = new DefaultListModel<String>();
         setLayout(gbl);
-        makeLabel("Welcome Gear Master " + m.getName() + "!", 0, 0);
+        makeLabel("Welcome Gear Master " + currentMember.getName() + "!", 0, 0);
         messageLabel = makeLabel(null, 3, 0);
         gearRoomDisplay = displayGearRoom();
         makeButtons();

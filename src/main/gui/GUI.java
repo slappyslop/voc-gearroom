@@ -63,7 +63,7 @@ public class GUI extends JFrame {
     }
 
     public void viewTrip(Trip t) {
-        tripPanel = new TripPanel(t);
+        tripPanel = new TripPanel(t, this, gearRoom);
         containerPanel.add(tripPanel, "trip");
         crd.show(containerPanel, "trip");
     }
