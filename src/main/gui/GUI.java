@@ -4,6 +4,8 @@ import java.awt.CardLayout;
 
 import model.GearRoom;
 import model.Member;
+import model.Trip;
+import model.TripAgenda;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,14 +20,17 @@ public class GUI extends JFrame {
     private LoginPanel login;
     private GearPanel gearPanel;
     private AgendaPanel agendaPanel;
+    private TripPanel tripPanel;
     private CardLayout crd;
     private Member currentMember;
     private GearRoom gearRoom;
+    private TripAgenda agenda;
 
     //EFFECTS: creates a GUI that manages all the panels
     public GUI() {
         super("Trip App");
         this.gearRoom = new GearRoom();
+        this.agenda = new TripAgenda();
         crd = new CardLayout();
         containerPanel = new JPanel(crd);
         login = new LoginPanel(this);
@@ -49,7 +54,7 @@ public class GUI extends JFrame {
             containerPanel.add(gearPanel, "gear");
             crd.show(containerPanel, "gear");
         } else {
-            agendaPanel = new AgendaPanel(currentMember, this, gearRoom);
+            agendaPanel = new AgendaPanel(currentMember, this, agenda, gearRoom);
             containerPanel.add(agendaPanel, "agenda");
             crd.show(containerPanel, "agenda");
         }
@@ -57,9 +62,10 @@ public class GUI extends JFrame {
         
     }
 
-    // EFFECTS: runs the gui
-    public static void main(String[] args) {
-        new GUI();
+    public void viewTrip(Trip t) {
+        tripPanel = new TripPanel(t);
+        containerPanel.add(tripPanel, "trip");
+        crd.show(containerPanel, "trip");
     }
 
     // MODIFIES: this

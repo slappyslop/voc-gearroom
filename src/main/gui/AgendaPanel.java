@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,12 +17,13 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
-
+import model.Gear;
 import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
 import persistence.JsonGearRoomReader;
+import persistence.JsonGearRoomWriter;
 import persistence.JsonTripAgendaReader;
 import persistence.JsonTripAgendaWriter;
 
@@ -48,9 +52,10 @@ public class AgendaPanel extends JPanel {
     
     //REQUIRES: m != null
     //EFFECTS: Displays the agenda view screen
-    public AgendaPanel(Member m, GUI gui, GearRoom gr) {
+    public AgendaPanel(Member m, GUI gui, TripAgenda agenda, GearRoom gr) {
         this.gearRoom = gr;
         this.gui = gui;
+        this.agenda = agenda;
         currentMember = m;
         agenda = new TripAgenda();
         gbl = new GridBagLayout();
@@ -102,11 +107,14 @@ public class AgendaPanel extends JPanel {
         saveTripAgenda = makeButton("Save Trip Agenda", 1, 1);
         if (currentMember.getLogInState() == "leader") {
             addTrip = makeButton("Add Trip", 2, 1);
+            addTrip.addActionListener(new AddTripListener());
         }
         viewSelectedTrip = makeButton("View Selected Trip", 3, 1);
         logOut = makeButton("Log Out", 4, 1);
         logOut.addActionListener(new LogOutListener());
         loadTripAgenda.addActionListener(new LoadTripAgendaListener());
+        saveTripAgenda.addActionListener(new SaveTripAgendaListener());
+        viewSelectedTrip.addActionListener(new ViewTripListener());
     
     }
 
@@ -148,6 +156,51 @@ public class AgendaPanel extends JPanel {
                
             }
 
+        }
+
+    }
+
+    private class SaveTripAgendaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jsonTripAgendaWriter = new JsonTripAgendaWriter(TRIPAGENDA_JSON_STORE);
+            try {  
+                jsonTripAgendaWriter.open();
+                jsonTripAgendaWriter.write(agenda);
+                jsonTripAgendaWriter.close();
+                messageLabel.setText("Successfully wrote to" + TRIPAGENDA_JSON_STORE + "!");
+            } catch (FileNotFoundException e1) {
+                messageLabel.setText("Unable to write to" + TRIPAGENDA_JSON_STORE + "!");
+               
+            }
+        }
+    }
+
+    private class AddTripListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String name = JOptionPane.showInputDialog(gui, "Trip Name:", null);
+            String gearList = JOptionPane.showInputDialog(gui, "Gear List: (insert comma and space between lowerspace gear names)", null);
+            String[] gl = gearList.split(", ");
+            int startDate = Integer.valueOf(JOptionPane.showInputDialog("Start date (integer):"));
+            int endDate = Integer.valueOf(JOptionPane.showInputDialog("End Date (integer >= start)"));
+            Trip t = new Trip(Arrays.asList(gl));
+            t.setName(name);
+            t.setStartDate(startDate);
+            t.setEndDate(endDate);
+            t.addToGoing(currentMember);
+            agenda.addTrip(t);
+            agendaNames.addElement(name);
+            
+        }
+    }
+
+    private class ViewTripListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Trip t = agenda.getTrips().get(tripAgendaDisplay.getSelectedIndex());
+            gui.viewTrip(t);
         }
 
     }
