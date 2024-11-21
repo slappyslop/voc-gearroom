@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,11 +24,9 @@ public class TripPanel extends JPanel {
     private Member currentMember;
     private GridBagLayout gbl;
     private GridBagConstraints gbc;
-    private JLabel messageLabel;
     private JLabel committedList;
     private JLabel goingList;
     private JLabel interestedList;
-    private JLabel gearList;
     private JButton interest;
     private JButton commit;
     private JButton going;
@@ -59,14 +56,13 @@ public class TripPanel extends JPanel {
         back.addActionListener(new BackListener());
         interest.addActionListener(new InterestListener());
         commit.addActionListener(new CommitListener());
-        
+
     }
 
     private void makeLabels() {
         makeLabel(trip.getName() + "\t Days: " + String.valueOf(trip.getStartDate()) + " - "
                 + String.valueOf(trip.getEndDate()), 0, 0);
-        messageLabel = makeLabel(null, 3, 0);
-        gearList = makeLabel("Gear List: " + String.join(", ", trip.getGearList()), 0, 2);
+        makeLabel("Gear List: " + String.join(", ", trip.getGearList()), 0, 2);
         goingList = makeLabel("Going: " + getString(trip.getGoing()), 0, 3);
         committedList = makeLabel("Committed: " + getString(trip.getCommitted()), 0, 4);
         interestedList = makeLabel("Interested: " + getString(trip.getInterested()), 0, 5);
@@ -159,13 +155,12 @@ public class TripPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            trip.addToGoing(currentMember);
+            String name = JOptionPane.showInputDialog("What is the name of the member you would like to add to going");
+            trip.addToGoing(new Member(name));
             updateLabels();
             updateUI();
         }
-    
+
     }
 
 }
-
-
