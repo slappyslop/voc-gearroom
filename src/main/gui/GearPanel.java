@@ -40,11 +40,12 @@ public class GearPanel extends JPanel {
     private GridBagConstraints gbc;
     private JsonGearRoomReader jsonGearRoomReader;
     private JsonGearRoomWriter jsonGearRoomWriter;
-    private JList gearRoomDisplay;
+    private JList<String> gearRoomDisplay;
 
     //REQUIRES: m != null
     //EFFECTS: Displays the gear view screen
-    public GearPanel(Member m, GUI gui) {
+    public GearPanel(Member m, GUI gui, GearRoom gr) {
+        this.gearRoom = gr;
         this.gui = gui;
         currentMember = m;
         gearRoom = new GearRoom();
@@ -68,7 +69,7 @@ public class GearPanel extends JPanel {
         gbc.gridx = x;
         gbc.gridy = y;
         gbc.gridwidth = LABEL_WIDTH;
-        gbc.fill = gbc.HORIZONTAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         add(label, gbc);
         return label;
     }
@@ -101,8 +102,8 @@ public class GearPanel extends JPanel {
 
 
     //EFFECTS: Displays a JList of gear names
-    private JList displayGearRoom() {
-        JList<String> list = new JList();
+    private JList<String> displayGearRoom() {
+        JList<String> list = new JList<String>();
         updateGearModel();
         list.setModel(gearNames);
         gbc.gridx = 0;
@@ -113,6 +114,7 @@ public class GearPanel extends JPanel {
         
     }
 
+    // EFFECTS: updates the gearNames list model
     private void updateGearModel() {
         gearNames.clear();
         for (Gear gear : gearRoom.getGearRoom()) {

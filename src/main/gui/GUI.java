@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.CardLayout;
 
-
+import model.GearRoom;
 import model.Member;
 
 import javax.swing.JFrame;
@@ -20,10 +20,12 @@ public class GUI extends JFrame {
     private AgendaPanel agendaPanel;
     private CardLayout crd;
     private Member currentMember;
+    private GearRoom gearRoom;
 
     //EFFECTS: creates a GUI that manages all the panels
     public GUI() {
         super("Trip App");
+        this.gearRoom = new GearRoom();
         crd = new CardLayout();
         containerPanel = new JPanel(crd);
         login = new LoginPanel(this);
@@ -43,11 +45,11 @@ public class GUI extends JFrame {
         currentMember.setLogInState(role);
 
         if (role.equals("gear master")) {
-            gearPanel = new GearPanel(currentMember, this);
+            gearPanel = new GearPanel(currentMember, this, gearRoom);
             containerPanel.add(gearPanel, "gear");
             crd.show(containerPanel, "gear");
         } else {
-            agendaPanel = new AgendaPanel(currentMember, this);
+            agendaPanel = new AgendaPanel(currentMember, this, gearRoom);
             containerPanel.add(agendaPanel, "agenda");
             crd.show(containerPanel, "agenda");
         }
