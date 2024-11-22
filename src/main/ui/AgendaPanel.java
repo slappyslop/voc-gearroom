@@ -20,6 +20,7 @@ import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
+import persistence.JsonGearRoomReader;
 import persistence.JsonTripAgendaReader;
 import persistence.JsonTripAgendaWriter;
 
@@ -28,6 +29,7 @@ import persistence.JsonTripAgendaWriter;
  */
 public class AgendaPanel extends JPanel {
     private static final int LABEL_WIDTH = 3;
+    private static final String GEARROOM_JSON_STORE = "./data/gearroom.json";
     private static final String TRIPAGENDA_JSON_STORE = "./data/tripagenda.json";
     private Member currentMember;
     private GUI gui;
@@ -35,6 +37,7 @@ public class AgendaPanel extends JPanel {
     private GridBagConstraints gbc;
     private JsonTripAgendaReader jsonTripAgendaReader;
     private JsonTripAgendaWriter jsonTripAgendaWriter;
+    private JsonGearRoomReader jsonGearRoomReader;
     private JList<String> tripAgendaDisplay;
     private DefaultListModel<String> agendaNames;
     private TripAgenda agenda;
@@ -140,6 +143,12 @@ public class AgendaPanel extends JPanel {
     private class LoadTripAgendaListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            jsonGearRoomReader = new JsonGearRoomReader(GEARROOM_JSON_STORE);
+            try {
+                gearRoom = jsonGearRoomReader.read();
+            } catch (IOException e1) {
+                messageLabel.setText("Unable to read from" + GEARROOM_JSON_STORE + "!");
+            }
             jsonTripAgendaReader = new JsonTripAgendaReader(TRIPAGENDA_JSON_STORE, gearRoom);
             try {
                 agenda = jsonTripAgendaReader.read();
