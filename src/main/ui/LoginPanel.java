@@ -11,8 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /*
- * Got the idea to use lambda functions for listeners here
- * https://www.codejava.net/java-core/the-java-language/java-8-lambda-listener-example
+ * Panel handles the login screen
  */
 public class LoginPanel extends JPanel {
     private static int BUTTON_Y = 2;
@@ -47,6 +46,8 @@ public class LoginPanel extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Adds the VOC logo to the screen
     private void addImage() {
         ImageIcon logo = new ImageIcon("./data/vocLogo-highres-fb.png");
         ImageIcon scaledLogo = new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));

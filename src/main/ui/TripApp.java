@@ -139,6 +139,7 @@ public class TripApp {
         }
     }
 
+    // EFFECTS: loads the trip agenda
     private void loadTripAgenda() {
         try {
             tripAgenda = jsonTripAgendaReader.read();
@@ -148,6 +149,7 @@ public class TripApp {
         }
     }
 
+    // EFFECTS: saves the trip agenda
     private void saveTripAgenda() {
         try {
             jsonTripAgendaWriter.open();
@@ -183,6 +185,7 @@ public class TripApp {
         }
     }
 
+    // EFFECTS: loads the gear room
     private void loadGearRoom() {
         try {
             gearRoom = jsonGearRoomReader.read();
@@ -193,6 +196,7 @@ public class TripApp {
         displayMainMenuGearMaster();
     }
 
+    // EFFECTS: saves the gear room
     private void saveGearRoom() {
         try {
             jsonGearRoomWriter.open();

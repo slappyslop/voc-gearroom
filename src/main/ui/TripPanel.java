@@ -16,6 +16,9 @@ import model.GearRoom;
 import model.Member;
 import model.Trip;
 
+/*
+ * Panel that handles view trip screen
+ */
 public class TripPanel extends JPanel {
     private static final int LABEL_WIDTH = 5;
     private Trip trip;
@@ -45,6 +48,8 @@ public class TripPanel extends JPanel {
         makeButtons();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes buttons
     private void makeButtons() {
         interest = makeButton("Register Interest", 0, 1);
         commit = makeButton("Commit", 1, 1);
@@ -59,6 +64,8 @@ public class TripPanel extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes labels
     private void makeLabels() {
         makeLabel(trip.getName() + "\t Days: " + String.valueOf(trip.getStartDate()) + " - "
                 + String.valueOf(trip.getEndDate()), 0, 0);
@@ -68,6 +75,7 @@ public class TripPanel extends JPanel {
         interestedList = makeLabel("Interested: " + getString(trip.getInterested()), 0, 5);
     }
 
+    //EFFECTS: Converts a List<Member> into a printable string
     private String getString(List<Member> memberList) {
         List<String> memberNames = new ArrayList<String>();
         for (Member member : memberList) {
@@ -88,6 +96,8 @@ public class TripPanel extends JPanel {
         return button;
     }
 
+    // MODIFIES: this
+    // EFFECTS: returns a JLabel with test at position x and y
     private JLabel makeLabel(String text, int x, int y) {
         JLabel label = new JLabel(text);
         gbc.gridx = x;
@@ -98,12 +108,16 @@ public class TripPanel extends JPanel {
         return label;
     }
 
+    // MODIFIES: this
+    // EFFECTS: Updates label texts to reflect changes to the underlying trip model
     public void updateLabels() {
         goingList.setText("Going: " + getString(trip.getGoing()));
         committedList.setText("Committed: " + getString(trip.getCommitted()));
         interestedList.setText("Interested: " + getString(trip.getInterested()));
     }
 
+
+    // Handles back button press
     private class BackListener implements ActionListener {
 
         @Override
@@ -113,6 +127,7 @@ public class TripPanel extends JPanel {
 
     }
 
+    // Handles register interest button press
     private class InterestListener implements ActionListener {
 
         @Override
@@ -125,6 +140,7 @@ public class TripPanel extends JPanel {
 
     }
 
+    // EFFECTS: Handles commit button press
     private class CommitListener implements ActionListener {
 
         @Override
@@ -151,6 +167,7 @@ public class TripPanel extends JPanel {
 
     }
 
+    // EFFECTS: Handles going button press
     private class GoingListener implements ActionListener {
 
         @Override

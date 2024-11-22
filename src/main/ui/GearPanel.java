@@ -61,7 +61,7 @@ public class GearPanel extends JPanel {
     }
 
     // MODIFIES: this
-    // EFFECTS: Creates a JLabel with test at position x and y
+    // EFFECTS: returns a JLabel with test at position x and y
     private JLabel makeLabel(String text, int x, int y) {
         JLabel label = new JLabel(text);
         gbc.gridx = x;
@@ -181,6 +181,7 @@ public class GearPanel extends JPanel {
 
     }
 
+    // Handles remove selected button click
     private class RemoveListener implements ActionListener {
 
         @Override

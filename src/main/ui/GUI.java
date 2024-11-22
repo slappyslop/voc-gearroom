@@ -26,7 +26,7 @@ public class GUI extends JFrame {
     private GearRoom gearRoom;
     private TripAgenda agenda;
 
-    // EFFECTS: creates a GUI that manages all the panels
+    // EFFECTS: creates a GUI that manages all the panels and window
     public GUI() {
         super("Trip App");
         this.gearRoom = new GearRoom();
@@ -62,18 +62,20 @@ public class GUI extends JFrame {
 
     }
 
+    // EFFECTS: views a specific trip in detail
     public void viewTrip(Trip t) {
         tripPanel = new TripPanel(t, this);
         containerPanel.add(tripPanel, "trip");
         crd.show(containerPanel, "trip");
     }
 
+    // EFFECTS: views the trip agenda
     public void viewAgenda() {
         crd.show(containerPanel, "agenda");
     }
 
     // MODIFIES: this
-    // EFFECTS: Logs out of the program resetting everything
+    // EFFECTS: logs out of the program resetting everything
     public void logOut() {
         this.dispose();
         new GUI();
