@@ -25,5 +25,19 @@ This project is of interest to me because I'm an enthusiastic member of the club
 11. As a user, I would like to save the current state of the trip agenda (if i choose)
 12. As a user, I would like to load a Gear Room and Trip Agenda from file (if i choose)
 
+## Instructions for the end user
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by logging in as a leader/member, viewing a specific trip
+  and then pressing the register interested or committed (which checks for gear reservations) to add only yourself (Member X) to the trip (y). 
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by logging in as a LEADER only, viewing a specific trip
+  and then pressing the going button, which allows you to add any member (Member X) to the trip Y
+- You also have the ability to add trips as a whole to the agenda, which is like adding Y to Z (although the agenda is a trivial class)
+- You also have the ability to add Gear (A) to the gear room (B), although B is a trivial class. This gear's availability is checked in the first required action
+- You can locate my visual component by opening the app, where the Varsity Outdoor Club's logo is displayed on the login screen
+- You can save the state of my application by pressing either the Save Gearrom button when logging in as a gearmaster, or the save Trip agenda button when
+  logged in as a member/leader
+- You can reload the state of my application by pressing the Load Trip Agenda button (which loads only the gearroom) when logged in as a gearmaster, or the load 
+  trip agenda button when logged in as a member/leader (which loads both the gearroom and trip agenda, however the gearroom is inaccessible to users)
+
+
 
 
