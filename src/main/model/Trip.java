@@ -43,7 +43,7 @@ public class Trip implements Writable {
         if (interested.contains(m)) {
             interested.remove(m);
         }
-        EventLog.getInstance().logEvent(new Event(m.getName() + "going on " + name));
+        EventLog.getInstance().logEvent(new Event(m.getName() + " going on " + name));
     }
 
     // MODIFIES: this
@@ -55,7 +55,7 @@ public class Trip implements Writable {
         if (interested.contains(m)) {
             interested.remove(m);
         }
-        EventLog.getInstance().logEvent(new Event(m.getName() + "committed to " + name));
+        EventLog.getInstance().logEvent(new Event(m.getName() + " committed to " + name));
         return checkEnoughGear(m, gr);
     }
 
@@ -64,7 +64,7 @@ public class Trip implements Writable {
     // never
     public void addToInterested(Member m) {
         interested.add(m);
-        EventLog.getInstance().logEvent(new Event(m.getName() + "interested in " + name));
+        EventLog.getInstance().logEvent(new Event(m.getName() + " interested in " + name));
     }
 
     //EFFECTS: Checks if getMemberRequiredGear(m) is available to rent in the clubroom
@@ -105,7 +105,7 @@ public class Trip implements Writable {
 
             }
         }
-        EventLog.getInstance().logEvent(new Event("Subtracted member gear from required gear"));
+        EventLog.getInstance().logEvent(new Event("Calculated gear " + m.getName() + " for trip"));
         return requiredGear;
 
     }

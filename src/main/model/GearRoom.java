@@ -21,6 +21,7 @@ public class GearRoom implements Writable {
     //         latest added gear is last
     public void addGear(Gear g) {
         gearRoom.add(g);
+        EventLog.getInstance().logEvent(new Event(g.getName() + " added to gearroom"));
     }
 
     public List<Gear> getGearRoom() {

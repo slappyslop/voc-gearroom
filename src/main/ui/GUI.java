@@ -1,6 +1,8 @@
 package ui;
 
 import java.awt.CardLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import model.GearRoom;
 import model.Member;
@@ -40,6 +42,7 @@ public class GUI extends JFrame {
         add(containerPanel);
         crd.show(containerPanel, "login");
         setVisible(true);
+        addWindowListener(new GUIListener());
 
     }
 
