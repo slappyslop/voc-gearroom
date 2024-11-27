@@ -22,6 +22,7 @@ public class TripAgenda implements Writable {
     //EFFECTS: Adds trips to the trip agenda
     public void addTrip(Trip t) {
         agenda.add(t);
+        EventLog.getInstance().logEvent(new Event(t.getName() + " added to agenda"));
     }
 
     public List<Trip> getTrips() {

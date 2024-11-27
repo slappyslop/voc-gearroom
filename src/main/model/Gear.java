@@ -29,6 +29,7 @@ public class Gear implements Writable {
     public void reserve(int start, int end) {
         for (int i = start; i <= end; i++) {
             reservations.add(i);
+            EventLog.getInstance().logEvent(new Event(name + " reserved on " + String.valueOf(i)));
         }
     }
 
@@ -42,6 +43,7 @@ public class Gear implements Writable {
     public boolean isReserved(int start, int end) {
         for (int i : reservations) {
             if ((start <= i) && (i <= end)) {
+                EventLog.getInstance().logEvent( new Event("Checked if " + name + " was reserved on " + String.valueOf(i)));
                 return true;
             } 
         }

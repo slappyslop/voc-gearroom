@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import model.TripAgenda;
 import model.Trip;
 import model.Member;
+import model.Event;
+import model.EventLog;
 import model.GearRoom;
 
 /*Taken from JSONSERIALIZATIONDEMO 
@@ -52,6 +54,7 @@ public class JsonTripAgendaReader {
     private TripAgenda parseTripAgenda(JSONObject jsonObject) {
         TripAgenda ta = new TripAgenda();
         addTrips(ta, jsonObject);
+        EventLog.getInstance().logEvent(new Event("Trip agenda parsed"));
         return ta;
     }
 

@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 import java.io.IOException;
 
+import model.Event;
+import model.EventLog;
 import model.Gear;
 import model.GearRoom;
 
@@ -47,6 +49,7 @@ public class JsonGearRoomReader {
     private GearRoom parseGearRoom(JSONObject jsonObject) {
         GearRoom gr = new GearRoom();
         addGears(gr, jsonObject);
+        EventLog.getInstance().logEvent(new Event("Gear room parsed"));
         return gr;
     }
 
