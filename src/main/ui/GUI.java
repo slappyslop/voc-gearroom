@@ -46,7 +46,7 @@ public class GUI extends JFrame {
         add(containerPanel);
         crd.show(containerPanel, "login");
         setVisible(true);
-        addWindowListener(new GUIListener());
+        addWindowListener(new GraphicalUserInterfaceListener());
 
     }
 
