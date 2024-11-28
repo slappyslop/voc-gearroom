@@ -10,7 +10,7 @@ public class GUIListener implements WindowListener {
     @Override
         public void windowOpened(WindowEvent e) {
             for (Event el : EventLog.getInstance()) {
-                System.out.println(el.getDescription());
+                System.out.println(el);
             }
         }
 

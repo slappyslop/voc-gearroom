@@ -21,6 +21,7 @@ import model.Member;
 import model.Trip;
 import model.TripAgenda;
 import persistence.JsonGearRoomReader;
+import persistence.JsonGearRoomWriter;
 import persistence.JsonTripAgendaReader;
 import persistence.JsonTripAgendaWriter;
 
@@ -38,6 +39,7 @@ public class AgendaPanel extends JPanel {
     private JsonTripAgendaReader jsonTripAgendaReader;
     private JsonTripAgendaWriter jsonTripAgendaWriter;
     private JsonGearRoomReader jsonGearRoomReader;
+    private JsonGearRoomWriter jsonGearRoomWriter;
     private JList<String> tripAgendaDisplay;
     private DefaultListModel<String> agendaNames;
     private TripAgenda agenda;
@@ -170,10 +172,14 @@ public class AgendaPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             jsonTripAgendaWriter = new JsonTripAgendaWriter(TRIPAGENDA_JSON_STORE);
+            jsonGearRoomWriter = new JsonGearRoomWriter(GEARROOM_JSON_STORE);
             try {
+                // jsonGearRoomWriter.open();
                 jsonTripAgendaWriter.open();
                 jsonTripAgendaWriter.write(agenda);
+                // jsonGearRoomWriter.write(gearRoom);
                 jsonTripAgendaWriter.close();
+                // jsonGearRoomWriter.close();
                 messageLabel.setText("Successfully wrote to" + TRIPAGENDA_JSON_STORE + "!");
             } catch (FileNotFoundException e1) {
                 messageLabel.setText("Unable to write to" + TRIPAGENDA_JSON_STORE + "!");

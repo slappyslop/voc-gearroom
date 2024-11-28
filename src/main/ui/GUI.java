@@ -3,11 +3,13 @@ package ui;
 import java.awt.CardLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import model.GearRoom;
 import model.Member;
 import model.Trip;
 import model.TripAgenda;
+import persistence.JsonGearRoomReader;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import javax.swing.JPanel;
  * Main GUI class that handles the GUI
  */
 public class GUI extends JFrame {
+    private static String GEARROOM_JSON_STORE = "./data/gearroom.json";
     private static int FRAME_HEIGHT = 200;
     private static int FRAME_WIDTH = 500;
     private JPanel containerPanel;
@@ -26,6 +29,7 @@ public class GUI extends JFrame {
     private CardLayout crd;
     private Member currentMember;
     private GearRoom gearRoom;
+
     private TripAgenda agenda;
 
     // EFFECTS: creates a GUI that manages all the panels and window
@@ -58,11 +62,22 @@ public class GUI extends JFrame {
             containerPanel.add(gearPanel, "gear");
             crd.show(containerPanel, "gear");
         } else {
+            loadGearRoom();
             agendaPanel = new AgendaPanel(currentMember, this);
             containerPanel.add(agendaPanel, "agenda");
             viewAgenda();
         }
 
+    }
+
+    private void loadGearRoom() {
+        JsonGearRoomReader reader = new JsonGearRoomReader(GEARROOM_JSON_STORE);
+        try {
+            gearRoom = reader.read();
+        } catch (IOException e) {
+            gearRoom = new GearRoom();
+            System.out.println("Unable to load gearroom for agenda");
+        }
     }
 
     // EFFECTS: views a specific trip in detail
