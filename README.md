@@ -39,5 +39,71 @@ This project is of interest to me because I'm an enthusiastic member of the club
   trip agenda button when logged in as a member/leader (which loads both the gearroom and trip agenda, however the gearroom is inaccessible to users)
 
 
+Note: There are two major functionalities in the app, only one can be done in a session, so I have 3 combined samples
+## Phase 4 Task 2:
+Wed Nov 27 18:54:45 PST 2024
+gm logged in as gear master
+Wed Nov 27 18:54:49 PST 2024
+skis added to gearroom
+Wed Nov 27 18:54:53 PST 2024
+skis2 added to gearroom
+Wed Nov 27 18:54:55 PST 2024
+skis3 added to gearroom
+Wed Nov 27 18:55:01 PST 2024
+xki added to gearroom
+Wed Nov 27 18:55:05 PST 2024
+skis added to gearroom
+Wed Nov 27 18:55:07 PST 2024
+skis added to gearroom
+Wed Nov 27 18:55:57 PST 2024
+m logged in as leader
+Wed Nov 27 18:55:57 PST 2024
+skis added to gearroom
+Wed Nov 27 18:55:57 PST 2024
+skis added to gearroom
+Wed Nov 27 18:55:57 PST 2024
+skis added to gearroom
+Wed Nov 27 18:55:57 PST 2024
+Gear room parsed
+Wed Nov 27 18:56:07 PST 2024
+m going on ski trip
+Wed Nov 27 18:56:07 PST 2024
+ski trip added to agenda    
+Wed Nov 27 18:57:44 PST 2024
+m2 logged in as member
+Wed Nov 27 18:57:44 PST 2024
+skis added to gearroom
+Wed Nov 27 18:57:44 PST 2024
+skis added to gearroom
+Wed Nov 27 18:57:44 PST 2024
+skis added to gearroom
+Wed Nov 27 18:57:44 PST 2024
+Gear room parsed
+Wed Nov 27 18:57:46 PST 2024
+skis added to gearroom
+Wed Nov 27 18:57:46 PST 2024
+skis added to gearroom
+Wed Nov 27 18:57:46 PST 2024
+skis added to gearroom
+Wed Nov 27 18:57:46 PST 2024
+Gear room parsed
+Wed Nov 27 18:57:46 PST 2024
+m going on ski trip
+Wed Nov 27 18:57:46 PST 2024
+ski trip added to agenda
+Wed Nov 27 18:57:46 PST 2024
+Trip agenda parsed
+Wed Nov 27 18:57:52 PST 2024
+m2 committed to ski trip
+Wed Nov 27 18:57:52 PST 2024
+skis reserved on 1
+Wed Nov 27 18:57:52 PST 2024
+skis reserved on 2
+Wed Nov 27 18:57:52 PST 2024
+skis reserved on 3
+Wed Nov 27 18:57:52 PST 2024
+skis reserved on 4
+Wed Nov 27 18:57:52 PST 2024
+Checked m2 gear requirements for ski trip
 
 

@@ -85,7 +85,7 @@ public class Trip implements Writable {
             }
 
         }
-        EventLog.getInstance().logEvent(new Event("Checked" + m.getName() + "gear requirements for " + name));
+        EventLog.getInstance().logEvent(new Event("Checked " + m.getName() + " gear requirements for " + name));
         return requiredGear;
     }
 
@@ -105,7 +105,6 @@ public class Trip implements Writable {
 
             }
         }
-        EventLog.getInstance().logEvent(new Event("Calculated gear " + m.getName() + " for trip"));
         return requiredGear;
 
     }

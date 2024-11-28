@@ -5,6 +5,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 
+import model.Event;
+import model.EventLog;
 import model.GearRoom;
 import model.Member;
 import model.Trip;
@@ -56,7 +58,7 @@ public class GUI extends JFrame {
     public void logIn(String role, String userName) {
         currentMember = new Member(userName);
         currentMember.setLogInState(role);
-
+        EventLog.getInstance().logEvent(new Event(userName + " logged in as " + role));
         if (role.equals("gear master")) {
             gearPanel = new GearPanel(currentMember, this);
             containerPanel.add(gearPanel, "gear");
