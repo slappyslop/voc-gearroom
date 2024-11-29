@@ -1,8 +1,6 @@
 package ui;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import model.Event;
